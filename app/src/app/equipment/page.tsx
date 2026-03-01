@@ -44,10 +44,10 @@ export default function EquipmentListPage() {
             <Plus className="h-4 w-4" />
             <span className="hidden sm:inline">Add Equipment</span> 新增設備
           </button>
-          <button className="flex items-center gap-2 rounded-lg border border-sl-border px-3 md:px-4 py-2.5 text-sm font-medium text-sl-text hover:bg-white transition-colors">
+          <Link href="/scan" className="flex items-center gap-2 rounded-lg border border-sl-border px-3 md:px-4 py-2.5 text-sm font-medium text-sl-text hover:bg-white transition-colors">
             <QrCode className="h-4 w-4" />
             <span className="hidden sm:inline">Scan QR</span> 掃碼查詢
-          </button>
+          </Link>
         </div>
       </div>
 

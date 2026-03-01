@@ -213,7 +213,7 @@ export default function DashboardPage() {
                 New Hazard Report 新增危害報告
               </Link>
               <Link
-                href="/equipment"
+                href="/scan"
                 className="flex items-center gap-3 w-full rounded-lg border border-sl-border px-4 py-3 text-sm font-medium text-sl-text hover:bg-sl-bg transition-colors"
               >
                 <QrCode className="h-4 w-4" />

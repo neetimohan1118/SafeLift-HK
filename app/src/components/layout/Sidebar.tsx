@@ -14,12 +14,12 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard },
-  { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye },
-  { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container },
-  { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder },
-  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell },
-  { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings },
+  { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard, badge: 0 },
+  { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye, badge: 0 },
+  { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container, badge: 0 },
+  { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder, badge: 0 },
+  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell, badge: 3 },
+  { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings, badge: 0 },
 ];
 
 export default function Sidebar() {
@@ -60,7 +60,12 @@ export default function Sidebar() {
                     <item.icon
                       className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`}
                     />
-                    {item.label}
+                    <span className="flex-1">{item.label}</span>
+                    {item.badge > 0 && (
+                      <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-sl-critical px-1.5 text-[10px] font-bold text-white">
+                        {item.badge}
+                      </span>
+                    )}
                   </Link>
                 </li>
               );
@@ -95,13 +100,20 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] transition-colors ${
+              className={`relative flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] transition-colors ${
                 isActive
                   ? "text-sl-orange"
                   : "text-sl-sidebar-text"
               }`}
             >
-              <item.icon className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`} />
+              <div className="relative">
+                <item.icon className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`} />
+                {item.badge > 0 && (
+                  <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-sl-critical px-1 text-[8px] font-bold text-white">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
               <span>{item.shortLabel}</span>
             </Link>
           );
