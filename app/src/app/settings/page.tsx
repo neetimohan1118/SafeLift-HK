@@ -16,7 +16,7 @@ export default function SettingsPage() {
   });
 
   return (
-    <div className="p-8 space-y-6 max-w-3xl">
+    <div className="p-4 md:p-8 space-y-6 max-w-3xl animate-fade-in-up">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-sl-text">Settings 設定</h1>

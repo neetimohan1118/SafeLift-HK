@@ -14,73 +14,99 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { href: "/", label: "Dashboard 儀表板", icon: LayoutDashboard },
-  { href: "/hazard", label: "Hazard Detection 危害檢測", icon: ScanEye },
-  { href: "/equipment", label: "Equipment 設備管理", icon: Container },
-  { href: "/documents", label: "Documents 文件管理", icon: Folder },
-  { href: "/alerts", label: "Alerts 通知中心", icon: Bell },
-  { href: "/settings", label: "Settings 設定", icon: Settings },
+  { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard },
+  { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye },
+  { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container },
+  { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder },
+  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell },
+  { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="flex h-screen w-64 flex-col bg-sl-sidebar-bg text-sl-sidebar-text flex-shrink-0">
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-5 py-5">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sl-orange">
-          <HardHat className="h-5 w-5 text-white" />
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden md:flex h-screen w-64 flex-col bg-sl-sidebar-bg text-sl-sidebar-text flex-shrink-0">
+        {/* Logo */}
+        <div className="flex items-center gap-3 px-5 py-5">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sl-orange">
+            <HardHat className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-[15px] font-bold text-white">SafeLift HK</span>
         </div>
-        <span className="text-[15px] font-bold text-white">SafeLift HK</span>
-      </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-3 py-2">
-        <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-sl-sidebar-text">
-          Navigation
-        </p>
-        <ul className="space-y-1">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/" && pathname.startsWith(item.href));
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 text-[14px] transition-colors ${
-                    isActive
-                      ? "bg-sl-orange/15 text-sl-orange font-medium"
-                      : "text-sl-sidebar-text hover:bg-white/5 hover:text-white"
-                  }`}
-                >
-                  <item.icon
-                    className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`}
-                  />
-                  {item.label}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        {/* Navigation */}
+        <nav className="flex-1 px-3 py-2">
+          <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-sl-sidebar-text">
+            Navigation
+          </p>
+          <ul className="space-y-1">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-[14px] transition-colors ${
+                      isActive
+                        ? "bg-sl-orange/15 text-sl-orange font-medium"
+                        : "text-sl-sidebar-text hover:bg-white/5 hover:text-white"
+                    }`}
+                  >
+                    <item.icon
+                      className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`}
+                    />
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* User */}
+        <div className="border-t border-white/10 px-4 py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sl-orange text-xs font-bold text-white">
+              陳
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-white truncate">陳大文</p>
+              <p className="text-xs text-sl-sidebar-text truncate">Site Manager</p>
+            </div>
+            <button className="text-sl-sidebar-text hover:text-white">
+              <MoreVertical className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      {/* Mobile Bottom Navigation */}
+      <nav className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-sl-sidebar-bg border-t border-white/10 safe-bottom">
+        {navItems.slice(0, 5).map((item) => {
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(item.href));
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex flex-1 flex-col items-center gap-0.5 py-2 text-[10px] transition-colors ${
+                isActive
+                  ? "text-sl-orange"
+                  : "text-sl-sidebar-text"
+              }`}
+            >
+              <item.icon className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`} />
+              <span>{item.shortLabel}</span>
+            </Link>
+          );
+        })}
       </nav>
-
-      {/* User */}
-      <div className="border-t border-white/10 px-4 py-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-sl-orange text-xs font-bold text-white">
-            陳
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-white truncate">陳大文</p>
-            <p className="text-xs text-sl-sidebar-text truncate">Site Manager</p>
-          </div>
-          <button className="text-sl-sidebar-text hover:text-white">
-            <MoreVertical className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    </aside>
+    </>
   );
 }

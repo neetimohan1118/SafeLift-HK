@@ -49,26 +49,26 @@ export default function DocumentsPage() {
   });
 
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-sl-text">
+          <h1 className="text-xl md:text-2xl font-bold text-sl-text">
             Documents 文件管理
           </h1>
           <p className="text-sm text-sl-text-secondary mt-1">
             Manage certificates, inspection reports, and safety records 管理證書、檢驗報告及安全紀錄
           </p>
         </div>
-        <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
+        <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors self-start sm:self-auto">
           <Upload className="h-4 w-4" />
           Upload Document 上傳文件
         </button>
       </div>
 
       {/* Search and Filters */}
-      <div className="flex items-center gap-4">
-        <div className="relative flex-1 max-w-md">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
           <Input
             placeholder="Search by equipment no., plate, or keyword 搜尋..."
@@ -77,28 +77,30 @@ export default function DocumentsPage() {
             className="pl-10 bg-white border-sl-border"
           />
         </div>
-        <select
-          value={typeFilter}
-          onChange={(e) => setTypeFilter(e.target.value)}
-          className="rounded-lg border border-sl-border bg-white px-4 py-2.5 text-sm text-sl-text"
-        >
-          <option value="all">Document Type 文件類型 ▾</option>
-          <option value="certificate">Certificate 證書</option>
-          <option value="inspection-report">Inspection Report 檢驗報告</option>
-          <option value="maintenance-record">Maintenance Record 維修紀錄</option>
-          <option value="safety-training">Safety Training 安全培訓</option>
-          <option value="load-test">Load Test 負重測試</option>
-        </select>
-        <select className="rounded-lg border border-sl-border bg-white px-4 py-2.5 text-sm text-sl-text">
-          <option>Equipment 設備 ▾</option>
-          <option>All Equipment</option>
-        </select>
-        <select className="rounded-lg border border-sl-border bg-white px-4 py-2.5 text-sm text-sl-text">
-          <option>Date Range 日期 ▾</option>
-          <option>Last 30 days</option>
-          <option>Last 90 days</option>
-          <option>This year</option>
-        </select>
+        <div className="flex gap-2 overflow-x-auto">
+          <select
+            value={typeFilter}
+            onChange={(e) => setTypeFilter(e.target.value)}
+            className="rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text whitespace-nowrap"
+          >
+            <option value="all">Document Type 文件類型 ▾</option>
+            <option value="certificate">Certificate 證書</option>
+            <option value="inspection-report">Inspection Report 檢驗報告</option>
+            <option value="maintenance-record">Maintenance Record 維修紀錄</option>
+            <option value="safety-training">Safety Training 安全培訓</option>
+            <option value="load-test">Load Test 負重測試</option>
+          </select>
+          <select className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text">
+            <option>Equipment 設備 ▾</option>
+            <option>All Equipment</option>
+          </select>
+          <select className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text">
+            <option>Date Range 日期 ▾</option>
+            <option>Last 30 days</option>
+            <option>Last 90 days</option>
+            <option>This year</option>
+          </select>
+        </div>
       </div>
 
       {/* Document Cards Grid */}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0F172A"/>
+  <g transform="translate(256,240)">
+    <!-- Hard hat shape -->
+    <ellipse cx="0" cy="20" rx="120" ry="40" fill="#FF6B00"/>
+    <path d="M-120,20 Q-120,-60 0,-80 Q120,-60 120,20" fill="#FF6B00"/>
+    <rect x="-130" y="15" width="260" height="16" rx="8" fill="#E65100"/>
+    <!-- Shield check -->
+    <g transform="translate(0,10) scale(0.6)">
+      <path d="M0,-40 L-30,40 L0,25 L30,40 Z" fill="none" stroke="#FFF" stroke-width="6" opacity="0.3"/>
+    </g>
+  </g>
+  <!-- Text -->
+  <text x="256" y="380" text-anchor="middle" font-family="Arial,sans-serif" font-weight="bold" font-size="72" fill="#FFFFFF">SafeLift</text>
+  <text x="256" y="430" text-anchor="middle" font-family="Arial,sans-serif" font-weight="600" font-size="40" fill="#FF6B00">HK</text>
+</svg>

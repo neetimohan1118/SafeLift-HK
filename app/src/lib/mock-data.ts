@@ -431,6 +431,33 @@ export const alerts: Alert[] = [
 // ==========================================
 export const maintenanceRecords: MaintenanceRecord[] = [
   {
+    id: "MR-005",
+    equipmentId: "LC-2024-001",
+    type: "routine",
+    date: "2026-02-15",
+    performedBy: "Engineer Wong",
+    description: "Monthly inspection — all systems normal 月例檢查 — 系統正常",
+    description_zh: "月度例行檢查 — 所有系統正常運作",
+  },
+  {
+    id: "MR-006",
+    equipmentId: "LC-2024-001",
+    type: "certification",
+    date: "2025-09-15",
+    performedBy: "Certified Inspector",
+    description: "Annual Form 3 Certification — Passed 年度表格三檢驗 — 合格",
+    description_zh: "年度法定表格三檢驗完成 — 合格",
+  },
+  {
+    id: "MR-007",
+    equipmentId: "LC-2024-001",
+    type: "repair",
+    date: "2025-07-03",
+    performedBy: "Hydraulic Workshop",
+    description: "Boom cylinder seal replacement 吊臂液壓缸密封件更換",
+    description_zh: "更換吊臂液壓缸密封件",
+  },
+  {
     id: "MR-001",
     equipmentId: "LC-0039-042",
     type: "routine",

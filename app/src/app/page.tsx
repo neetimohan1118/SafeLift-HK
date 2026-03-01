@@ -33,7 +33,7 @@ const statusColor: Record<string, string> = {
 
 export default function DashboardPage() {
   return (
-    <div className="p-8 space-y-6">
+    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-sl-text">Dashboard 儀表板</h1>
@@ -85,7 +85,8 @@ export default function DashboardPage() {
               View All <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="overflow-x-auto">
+          {/* Desktop Table */}
+          <div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-sl-border text-left text-sl-text-secondary">
@@ -131,6 +132,28 @@ export default function DashboardPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+          {/* Mobile Cards */}
+          <div className="md:hidden p-3 space-y-2">
+            {hazardReports.map((r) => (
+              <div
+                key={r.id}
+                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>
+                  <p className="text-xs text-sl-text-secondary">{r.reportedAt.split(" ")[0]} · {r.hazardType.replace("_", " ")}</p>
+                </div>
+                <div className="flex items-center gap-2 ml-2 shrink-0">
+                  <Badge variant="secondary" className={`${severityColor[r.severity]} text-xs font-medium`}>
+                    {r.severity.toUpperCase()}
+                  </Badge>
+                  <Badge variant="secondary" className={`${statusColor[r.status]} text-xs font-medium`}>
+                    {r.status.replace("_", " ")}
+                  </Badge>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
