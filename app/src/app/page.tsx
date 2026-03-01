@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import {
   Construction,
   FileWarning,
@@ -8,6 +9,8 @@ import {
   Plus,
   QrCode,
   ChevronRight,
+  X,
+  ShieldAlert,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -32,8 +35,49 @@ const statusColor: Record<string, string> = {
 };
 
 export default function DashboardPage() {
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    const showTimer = setTimeout(() => setShowToast(true), 1200);
+    const hideTimer = setTimeout(() => setShowToast(false), 7000);
+    return () => { clearTimeout(showTimer); clearTimeout(hideTimer); };
+  }, []);
+
   return (
-    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
+    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
+      {/* Welcome Toast */}
+      {showToast && (
+        <div className="fixed top-4 right-4 z-50 max-w-sm animate-fade-in-up">
+          <div className="bg-white rounded-xl border border-sl-border shadow-lg overflow-hidden">
+            <div className="flex items-start gap-3 p-4">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-100">
+                <ShieldAlert className="h-4 w-4 text-sl-critical" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold text-sl-text">嚴重危害偵測 Critical Hazard</p>
+                <p className="text-xs text-sl-text-secondary mt-0.5">
+                  長沙灣工地偵測到有人進入吊運危險範圍
+                </p>
+                <Link
+                  href="/alerts"
+                  className="text-xs text-sl-orange font-medium mt-1 inline-block hover:underline"
+                >
+                  View Details 查看詳情 →
+                </Link>
+              </div>
+              <button
+                onClick={() => setShowToast(false)}
+                className="text-sl-text-secondary hover:text-sl-text shrink-0"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <div className="h-1 bg-sl-critical/20">
+              <div className="h-full bg-sl-critical animate-shrink-width" />
+            </div>
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-sl-text">Dashboard 儀表板</h1>

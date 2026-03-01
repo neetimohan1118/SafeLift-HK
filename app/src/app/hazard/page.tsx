@@ -137,45 +137,26 @@ export default function HazardDetectionPage() {
 
         {/* Photo Area with stock image */}
         <div className="relative flex-1 rounded-xl overflow-hidden bg-slate-800 min-h-[400px]">
-          {/* Background: construction site gradient simulation */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: state === "idle"
-                ? "linear-gradient(135deg, #374151 0%, #1f2937 50%, #111827 100%)"
-                : "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 30%, #3d5a7f 60%, #7d8a97 100%)",
-            }}
-          >
-            {/* Simulated scene elements when analyzed */}
-            {state !== "idle" && (
-              <div className="absolute inset-0 opacity-30">
-                {/* Crane structure */}
-                <div className="absolute top-[5%] left-[35%] w-[3px] h-[60%] bg-yellow-600" />
-                <div className="absolute top-[5%] left-[35%] w-[45%] h-[3px] bg-yellow-600" />
-                <div className="absolute top-[5%] left-[75%] w-[3px] h-[20%] bg-yellow-700" />
-                {/* Buildings */}
-                <div className="absolute bottom-0 left-[5%] w-[15%] h-[40%] bg-slate-500/50 rounded-t-sm" />
-                <div className="absolute bottom-0 left-[22%] w-[10%] h-[55%] bg-slate-400/40 rounded-t-sm" />
-                <div className="absolute bottom-0 right-[10%] w-[12%] h-[45%] bg-slate-500/30 rounded-t-sm" />
-                <div className="absolute bottom-0 right-[25%] w-[8%] h-[35%] bg-slate-400/40 rounded-t-sm" />
-                {/* Ground */}
-                <div className="absolute bottom-0 left-0 right-0 h-[15%] bg-amber-900/30" />
-                {/* Workers */}
-                <div className="absolute bottom-[18%] left-[25%] w-3 h-6 bg-orange-400/60 rounded-t-full" />
-                <div className="absolute bottom-[18%] left-[50%] w-3 h-6 bg-yellow-400/60 rounded-t-full" />
-                <div className="absolute bottom-[18%] right-[30%] w-3 h-6 bg-orange-400/60 rounded-t-full" />
-              </div>
-            )}
-
-            {/* Idle state */}
-            {state === "idle" && (
-              <div className="absolute inset-0 flex items-center justify-center">
+          {/* Background: construction site photo or idle state */}
+          <div className="absolute inset-0">
+            {state === "idle" ? (
+              <div className="absolute inset-0 bg-gradient-to-b from-slate-700 to-slate-900 flex items-center justify-center">
                 <div className="text-center text-slate-400">
                   <Camera className="h-16 w-16 mx-auto mb-4 opacity-50" />
                   <p className="text-lg font-medium">Take a photo to begin analysis</p>
                   <p className="text-sm mt-1">拍攝工地照片以開始AI分析</p>
                 </div>
               </div>
+            ) : (
+              <>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
+                  alt="Construction site with crane"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/20" />
+              </>
             )}
           </div>
 
