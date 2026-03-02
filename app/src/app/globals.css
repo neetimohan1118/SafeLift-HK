@@ -112,6 +112,13 @@
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
+/* Main content padding accounts for bottom nav + safe area */
+@media (max-width: 767px) {
+  .safe-main-bottom {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Mobile header bar */
 .mobile-header {
   padding-top: env(safe-area-inset-top, 0px);

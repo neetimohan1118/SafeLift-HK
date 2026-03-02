@@ -77,15 +77,20 @@ export default function HazardDetectionPage() {
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [visibleHazards, setVisibleHazards] = useState(0);
   const timerCleanupRef = useRef<(() => void) | null>(null);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const [toast, setToast] = useState("");
 
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
 
   useEffect(() => {
-    return () => { timerCleanupRef.current?.(); };
+    return () => {
+      timerCleanupRef.current?.();
+      clearTimeout(toastTimerRef.current);
+    };
   }, []);
 
   const criticalCount = mockHazards.filter((h) => h.severity === "critical").length;
@@ -93,6 +98,10 @@ export default function HazardDetectionPage() {
   const mediumCount = mockHazards.filter((h) => h.severity === "medium").length;
 
   const runAnalysis = useCallback(() => {
+    // Clean up any previous analysis timers to prevent race conditions
+    timerCleanupRef.current?.();
+    timerCleanupRef.current = null;
+
     setState("analyzing");
     setAnalysisProgress(0);
     setVisibleHazards(0);
