@@ -114,8 +114,11 @@ export default function EquipmentListPage() {
                 return (
                   <tr
                     key={eq.id}
+                    tabIndex={0}
+                    role="link"
                     onClick={() => router.push(`/equipment/${eq.id}`)}
-                    className="border-b border-sl-border/50 hover:bg-sl-bg/30 transition-colors cursor-pointer"
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); router.push(`/equipment/${eq.id}`); } }}
+                    className="border-b border-sl-border/50 hover:bg-sl-bg/30 transition-colors cursor-pointer focus:outline-none focus:bg-sl-bg/50"
                   >
                     <td className="px-6 py-4">
                       <span className="font-medium text-sl-text hover:text-sl-orange transition-colors">

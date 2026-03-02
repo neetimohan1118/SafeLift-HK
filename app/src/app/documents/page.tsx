@@ -98,7 +98,7 @@ export default function DocumentsPage() {
           <select
             value={equipmentFilter}
             onChange={(e) => setEquipmentFilter(e.target.value)}
-            className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
+            className="rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
           >
             <option value="all">Equipment 設備 ▾</option>
             {uniqueEquipment.map((name) => (

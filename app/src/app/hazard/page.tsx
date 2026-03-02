@@ -168,11 +168,13 @@ export default function HazardDetectionPage() {
           </div>
 
           {/* LIVE badge */}
-          <div className="absolute top-4 left-4 z-10">
-            <Badge className="bg-red-600 text-white px-3 py-1 text-xs font-bold animate-pulse">
-              LIVE
-            </Badge>
-          </div>
+          {state !== "idle" && (
+            <div className="absolute top-4 left-4 z-10">
+              <Badge className="bg-red-600 text-white px-3 py-1 text-xs font-bold animate-pulse">
+                LIVE
+              </Badge>
+            </div>
+          )}
 
           {/* AI Detection badge */}
           <div className="absolute top-4 right-4 z-10">
