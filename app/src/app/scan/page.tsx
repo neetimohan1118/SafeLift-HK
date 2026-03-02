@@ -9,7 +9,13 @@ export default function ScanPage() {
   const router = useRouter();
   const [scanState, setScanState] = useState<"scanning" | "found" | "navigating">("scanning");
   const [scanLinePos, setScanLinePos] = useState(0);
+  const [toast, setToast] = useState("");
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
 
   // Animate scan line
   useEffect(() => {
@@ -47,6 +53,14 @@ export default function ScanPage() {
 
   return (
     <div className="flex flex-col h-full bg-black">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-white/20 backdrop-blur-sm text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Top Bar */}
       <div className="flex items-center justify-between p-4 text-white z-10">
         <Link href="/equipment" className="flex items-center gap-2 text-sm">
@@ -143,7 +157,7 @@ export default function ScanPage() {
 
       {/* Bottom Controls */}
       <div className="flex items-center justify-center gap-8 p-6 bg-black">
-        <button className="flex flex-col items-center gap-1 text-white/60">
+        <button onClick={() => showToast("Flash not available in demo 閃光燈不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
             <Flashlight className="h-5 w-5" />
           </div>
@@ -159,7 +173,7 @@ export default function ScanPage() {
           </button>
         )}
 
-        <button className="flex flex-col items-center gap-1 text-white/60">
+        <button onClick={() => showToast("Camera switch not available in demo 切換相機不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
             <SwitchCamera className="h-5 w-5" />
           </div>
