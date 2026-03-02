@@ -39,13 +39,18 @@ const statusBadge: Record<string, { label: string; className: string }> = {
 export default function DocumentsPage() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
+  const [equipmentFilter, setEquipmentFilter] = useState("all");
+
+  // Extract unique equipment names for filter
+  const uniqueEquipment = [...new Set(documents.map((d) => d.equipmentName))];
 
   const filtered = documents.filter((d) => {
     const matchSearch =
       d.fileName.toLowerCase().includes(search.toLowerCase()) ||
       d.equipmentName.toLowerCase().includes(search.toLowerCase());
     const matchType = typeFilter === "all" || d.fileType === typeFilter;
-    return matchSearch && matchType;
+    const matchEquipment = equipmentFilter === "all" || d.equipmentName === equipmentFilter;
+    return matchSearch && matchType && matchEquipment;
   });
 
   return (
@@ -90,15 +95,15 @@ export default function DocumentsPage() {
             <option value="safety-training">Safety Training 安全培訓</option>
             <option value="load-test">Load Test 負重測試</option>
           </select>
-          <select className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text">
-            <option>Equipment 設備 ▾</option>
-            <option>All Equipment</option>
-          </select>
-          <select className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text">
-            <option>Date Range 日期 ▾</option>
-            <option>Last 30 days</option>
-            <option>Last 90 days</option>
-            <option>This year</option>
+          <select
+            value={equipmentFilter}
+            onChange={(e) => setEquipmentFilter(e.target.value)}
+            className="hidden sm:block rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
+          >
+            <option value="all">Equipment 設備 ▾</option>
+            {uniqueEquipment.map((name) => (
+              <option key={name} value={name}>{name}</option>
+            ))}
           </select>
         </div>
       </div>
@@ -178,13 +183,13 @@ export default function DocumentsPage() {
           Showing {filtered.length} of {documents.length} documents 顯示{filtered.length}份文件
         </p>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary hover:bg-white">
+          <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
             <ChevronLeft className="h-4 w-4" /> Previous
           </button>
           <button className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
             1
           </button>
-          <button className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary hover:bg-white">
+          <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
             Next <ChevronRight className="h-4 w-4" />
           </button>
         </div>

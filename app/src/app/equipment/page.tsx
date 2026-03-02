@@ -145,10 +145,10 @@ export default function EquipmentListPage() {
             Showing {filtered.length} of {equipmentData.length} equipment 顯示{filtered.length}項設備
           </p>
           <div className="flex items-center gap-2">
-            <button className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary hover:bg-sl-bg">
+            <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
               <ChevronLeft className="h-4 w-4" /> Previous
             </button>
-            <button className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary hover:bg-sl-bg">
+            <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
               Next <ChevronRight className="h-4 w-4" />
             </button>
           </div>
