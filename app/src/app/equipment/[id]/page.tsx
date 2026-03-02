@@ -103,7 +103,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
             </Badge>
           </div>
           <p className="text-sm text-sl-text-secondary mt-1">
-            Equipment No. {equipment.equipmentNumber} · {equipment.type} · License Plate: {equipment.licensePlate}
+            Equipment No. 設備編號 {equipment.equipmentNumber} · {equipment.type} · License Plate 車牌: {equipment.licensePlate}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -161,7 +161,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
                           <span className="flex items-center gap-1">
                             <Clock className="h-3 w-3" /> {record.date}
                           </span>
-                          <span>By: {record.performedBy}</span>
+                          <span>By 執行: {record.performedBy}</span>
                         </div>
                       </div>
                     </div>
@@ -209,7 +209,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
                   {status.label}
                 </Badge>
                 <p className="text-xs text-sl-text-secondary mt-2">
-                  Expires: {equipment.certExpiryDate}
+                  Expires 到期日: {equipment.certExpiryDate}
                 </p>
                 <p className="text-xs text-sl-text-secondary">
                   Last inspection 上次檢驗: {equipment.lastInspectionDate}
