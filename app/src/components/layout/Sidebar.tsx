@@ -12,21 +12,20 @@ import {
   HardHat,
   MoreVertical,
 } from "lucide-react";
-import { alerts } from "@/lib/mock-data";
-
-const unreadAlertCount = alerts.filter((a) => !a.isRead).length;
+import { useAlerts } from "@/lib/alert-context";
 
 const navItems = [
-  { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard, badge: 0 },
-  { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye, badge: 0 },
-  { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container, badge: 0 },
-  { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder, badge: 0 },
-  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell, badge: unreadAlertCount },
-  { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings, badge: 0 },
+  { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard, badgeKey: null },
+  { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye, badgeKey: null },
+  { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container, badgeKey: null },
+  { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder, badgeKey: null },
+  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell, badgeKey: "alerts" as const },
+  { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings, badgeKey: null },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const { unreadCount } = useAlerts();
 
   return (
     <>
@@ -50,6 +49,7 @@ export default function Sidebar() {
               const isActive =
                 pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href));
+              const badge = item.badgeKey === "alerts" ? unreadCount : 0;
               return (
                 <li key={item.href}>
                   <Link
@@ -64,9 +64,9 @@ export default function Sidebar() {
                       className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`}
                     />
                     <span className="flex-1">{item.label}</span>
-                    {item.badge > 0 && (
+                    {badge > 0 && (
                       <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-sl-critical px-1.5 text-[10px] font-bold text-white">
-                        {item.badge}
+                        {badge}
                       </span>
                     )}
                   </Link>
@@ -99,6 +99,7 @@ export default function Sidebar() {
           const isActive =
             pathname === item.href ||
             (item.href !== "/" && pathname.startsWith(item.href));
+          const badge = item.badgeKey === "alerts" ? unreadCount : 0;
           return (
             <Link
               key={item.href}
@@ -111,9 +112,9 @@ export default function Sidebar() {
             >
               <div className="relative">
                 <item.icon className={`h-5 w-5 ${isActive ? "text-sl-orange" : ""}`} />
-                {item.badge > 0 && (
+                {badge > 0 && (
                   <span className="absolute -top-1.5 -right-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-sl-critical px-1 text-[8px] font-bold text-white">
-                    {item.badge}
+                    {badge}
                   </span>
                 )}
               </div>

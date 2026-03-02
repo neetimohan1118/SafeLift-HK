@@ -4,12 +4,12 @@ import { usePathname } from "next/navigation";
 import { HardHat, Bell } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
-import { alerts } from "@/lib/mock-data";
+import { AlertProvider, useAlerts } from "@/lib/alert-context";
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
+function AppShellInner({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLoginPage = pathname === "/login";
-  const unreadCount = alerts.filter((a) => !a.isRead).length;
+  const { unreadCount } = useAlerts();
 
   if (isLoginPage) {
     return <>{children}</>;
@@ -44,5 +44,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <main className="flex-1 overflow-y-auto bg-sl-bg pb-16 md:pb-0">{children}</main>
       </div>
     </div>
+  );
+}
+
+export default function AppShell({ children }: { children: React.ReactNode }) {
+  return (
+    <AlertProvider>
+      <AppShellInner>{children}</AppShellInner>
+    </AlertProvider>
   );
 }

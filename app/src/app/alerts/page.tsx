@@ -12,7 +12,7 @@ import {
   Eye,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { alerts as initialAlerts, Alert } from "@/lib/mock-data";
+import { useAlerts } from "@/lib/alert-context";
 
 const tabs = [
   { id: "all", label: "All 全部", icon: Bell },
@@ -61,15 +61,9 @@ const priorityConfig: Record<string, {
 
 export default function AlertCenterPage() {
   const [activeTab, setActiveTab] = useState("all");
-  const [alertList, setAlertList] = useState<Alert[]>(initialAlerts);
+  const { alerts, unreadCount, markAllRead } = useAlerts();
 
-  const unreadCount = alertList.filter((a) => !a.isRead).length;
-
-  const handleMarkAllRead = () => {
-    setAlertList((prev) => prev.map((a) => ({ ...a, isRead: true })));
-  };
-
-  const filteredAlerts = alertList.filter((a) => {
+  const filteredAlerts = alerts.filter((a) => {
     if (activeTab === "all") return true;
     if (activeTab === "unread") return !a.isRead;
     return a.type === activeTab;
@@ -84,7 +78,7 @@ export default function AlertCenterPage() {
       acc[label].push(alert);
       return acc;
     },
-    {} as Record<string, Alert[]>,
+    {} as Record<string, typeof alerts>,
   );
 
   return (
@@ -100,7 +94,7 @@ export default function AlertCenterPage() {
           </p>
         </div>
         <button
-          onClick={handleMarkAllRead}
+          onClick={markAllRead}
           className={`text-sm hover:underline self-start sm:self-auto whitespace-nowrap ${
             unreadCount > 0 ? "text-sl-orange" : "text-sl-text-secondary cursor-default"
           }`}
@@ -118,8 +112,8 @@ export default function AlertCenterPage() {
           const count = tab.id === "unread"
             ? unreadCount
             : tab.id === "all"
-              ? alertList.length
-              : alertList.filter((a) => a.type === tab.id).length;
+              ? alerts.length
+              : alerts.filter((a) => a.type === tab.id).length;
           return (
             <button
               key={tab.id}
