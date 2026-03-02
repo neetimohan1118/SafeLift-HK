@@ -205,7 +205,7 @@ export default function HazardDetectionPage() {
           <div className="absolute top-4 right-4 z-10">
             <Badge className="bg-black/60 text-white px-3 py-1 text-xs flex items-center gap-1.5">
               <Sparkles className="h-3 w-3" />
-              {state === "analyzing" ? "Analyzing..." : "AI Detection On"}
+              {state === "analyzing" ? "Analyzing... 分析中" : "AI Detection On AI偵測"}
             </Badge>
           </div>
 
@@ -337,7 +337,7 @@ export default function HazardDetectionPage() {
               </div>
               <div className="mt-3 text-xs text-sl-text-secondary space-y-1">
                 <p>Model: Qwen2.5-VL-72B (阿里巴巴)</p>
-                <p>Checking: zone safety, rigging, load, PPE, ground stability</p>
+                <p>Checking: zone safety, rigging, load, PPE, ground stability 檢查項目：區域安全、吊索、負載、防護裝備、地面穩定性</p>
               </div>
             </div>
           ) : (

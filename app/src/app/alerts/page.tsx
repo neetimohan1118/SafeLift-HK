@@ -195,7 +195,7 @@ export default function AlertCenterPage() {
                                   <Clock className="h-3 w-3" />
                                   {alert.createdAt}
                                 </span>
-                                <Link href={`/equipment/${alert.equipmentId}`} onClick={(e) => e.stopPropagation()} className="hover:text-sl-orange hover:underline transition-colors">Equipment: {alert.equipmentId}</Link>
+                                <Link href={`/equipment/${alert.equipmentId}`} onClick={(e) => e.stopPropagation()} className="hover:text-sl-orange hover:underline transition-colors">Equipment 設備: {alert.equipmentId}</Link>
                               </div>
                             </div>
                             <Badge variant="secondary" className={`${config.className} text-xs font-medium shrink-0`}>

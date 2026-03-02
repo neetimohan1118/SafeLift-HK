@@ -130,32 +130,32 @@ export default function SettingsPage() {
         <div className="space-y-4">
           <ToggleRow
             label="Certificate Expiry 證書到期提醒"
-            description="30-day and 14-day reminders for expiring certificates"
+            description="30-day and 14-day reminders for expiring certificates 證書到期前30天及14天提醒"
             checked={notifications.certExpiry}
             onChange={() => setNotifications((p) => ({ ...p, certExpiry: !p.certExpiry }))}
           />
           <ToggleRow
             label="Hazard Alerts 危害警報"
-            description="Immediate alerts for critical and high severity hazards"
+            description="Immediate alerts for critical and high severity hazards 嚴重及高危險害即時警報"
             checked={notifications.hazardAlerts}
             onChange={() => setNotifications((p) => ({ ...p, hazardAlerts: !p.hazardAlerts }))}
           />
           <ToggleRow
             label="Maintenance Due 維修到期"
-            description="Reminders for scheduled maintenance"
+            description="Reminders for scheduled maintenance 定期維修提醒"
             checked={notifications.maintenance}
             onChange={() => setNotifications((p) => ({ ...p, maintenance: !p.maintenance }))}
           />
           <div className="border-t border-sl-border pt-4 mt-4" />
           <ToggleRow
             label="Email Notifications 電郵通知"
-            description="Receive alerts via email"
+            description="Receive alerts via email 透過電郵接收警報"
             checked={notifications.email}
             onChange={() => setNotifications((p) => ({ ...p, email: !p.email }))}
           />
           <ToggleRow
             label="Push Notifications 推送通知"
-            description="Browser push notifications (requires PWA install)"
+            description="Browser push notifications (requires PWA install) 瀏覽器推送通知（需安裝PWA）"
             checked={notifications.push}
             onChange={() => setNotifications((p) => ({ ...p, push: !p.push }))}
           />
@@ -175,7 +175,7 @@ export default function SettingsPage() {
             Change Password 更改密碼
           </button>
           <p className="text-xs text-sl-text-secondary">
-            Last password change: 2026-01-15
+            Last password change 上次更改密碼: 2026-01-15
           </p>
         </div>
       </div>

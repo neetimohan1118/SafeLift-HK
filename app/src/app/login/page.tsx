@@ -176,7 +176,7 @@ export default function LoginPage() {
                 <Input
                   id="login-password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter password"
+                  placeholder="Enter password 輸入密碼"
                   defaultValue="demo123"
                   className="pl-10 pr-10 bg-white border-sl-border h-11"
                 />

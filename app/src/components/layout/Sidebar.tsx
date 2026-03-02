@@ -42,7 +42,7 @@ export default function Sidebar() {
         {/* Navigation */}
         <nav className="flex-1 px-3 py-2">
           <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-sl-sidebar-text">
-            Navigation
+            Navigation 導覽
           </p>
           <ul className="space-y-1">
             {navItems.map((item) => {
@@ -84,7 +84,7 @@ export default function Sidebar() {
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-white truncate">陳大文</p>
-              <p className="text-xs text-sl-sidebar-text truncate">Site Manager</p>
+              <p className="text-xs text-sl-sidebar-text truncate">Site Manager 工地經理</p>
             </div>
             <Link href="/settings" className="text-sl-sidebar-text hover:text-white" aria-label="Settings 設定">
               <MoreVertical className="h-4 w-4" />

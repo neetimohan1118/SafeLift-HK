@@ -140,7 +140,7 @@ export default function DashboardPage() {
               href="/hazard"
               className="text-sm text-sl-orange hover:underline flex items-center gap-1"
             >
-              View All <ChevronRight className="h-4 w-4" />
+              View All 查看全部 <ChevronRight className="h-4 w-4" />
             </Link>
           </div>
           {/* Desktop Table */}
@@ -246,7 +246,7 @@ export default function DashboardPage() {
                       {e.equipment}
                     </p>
                     <p className="text-xs text-sl-text-secondary">
-                      Certificate expires in {e.daysLeft} days
+                      Certificate expires in {e.daysLeft} days · 證書{e.daysLeft}天後到期
                     </p>
                   </div>
                   <Badge
