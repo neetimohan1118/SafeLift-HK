@@ -49,16 +49,13 @@
   /* SafeLift custom colors */
   --color-sl-orange: #FF6B00;
   --color-sl-bg: #F8FAFC;
-  --color-sl-card: #FFFFFF;
   --color-sl-border: #E2E8F0;
   --color-sl-text: #1E293B;
   --color-sl-text-secondary: #64748B;
   --color-sl-sidebar-bg: #0F172A;
   --color-sl-sidebar-text: #94A3B8;
-  --color-sl-sidebar-active: #FF6B00;
   --color-sl-critical: #DC2626;
   --color-sl-high: #EA580C;
-  --color-sl-medium: #CA8A04;
   --color-sl-low: #2563EB;
   --color-sl-safe: #16A34A;
 }

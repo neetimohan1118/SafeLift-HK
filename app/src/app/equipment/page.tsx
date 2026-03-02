@@ -215,15 +215,15 @@ export default function EquipmentListPage() {
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-xs mt-3">
                     <div>
-                      <p className="text-sl-text-secondary">車牌</p>
+                      <p className="text-sl-text-secondary">Plate 車牌</p>
                       <p className="font-medium text-sl-text">{eq.licensePlate || "—"}</p>
                     </div>
                     <div>
-                      <p className="text-sl-text-secondary">型號</p>
+                      <p className="text-sl-text-secondary">Model 型號</p>
                       <p className="font-medium text-sl-text truncate">{eq.model}</p>
                     </div>
                     <div>
-                      <p className="text-sl-text-secondary">承載</p>
+                      <p className="text-sl-text-secondary">Cap. 承載</p>
                       <p className="font-medium text-sl-text">{eq.maxCapacity}T</p>
                     </div>
                   </div>
