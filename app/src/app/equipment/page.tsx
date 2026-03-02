@@ -38,8 +38,8 @@ export default function EquipmentListPage() {
   });
 
   return (
-    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
-      {/* Toast */}
+    <>
+      {/* Toast — rendered outside animated container to fix fixed positioning */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
           <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
@@ -47,6 +47,7 @@ export default function EquipmentListPage() {
           </div>
         </div>
       )}
+      <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -233,5 +234,6 @@ export default function EquipmentListPage() {
         </>
       )}
     </div>
+    </>
   );
 }

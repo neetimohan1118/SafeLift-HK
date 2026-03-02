@@ -48,8 +48,8 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
-      {/* Welcome Toast */}
+    <>
+      {/* Welcome Toast — rendered outside animated container to fix fixed positioning */}
       {showToast && (
         <div className="fixed top-4 right-4 z-50 max-w-sm animate-fade-in-up">
           <div className="bg-white rounded-xl border border-sl-border shadow-lg overflow-hidden">
@@ -82,6 +82,7 @@ export default function DashboardPage() {
           </div>
         </div>
       )}
+      <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-sl-text">Dashboard 儀表板</h1>
@@ -283,6 +284,7 @@ export default function DashboardPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
