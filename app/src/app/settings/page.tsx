@@ -136,7 +136,7 @@ export default function SettingsPage() {
           />
           <ToggleRow
             label="Hazard Alerts 危害警報"
-            description="Immediate alerts for critical and high severity hazards 嚴重及高危險害即時警報"
+            description="Immediate alerts for critical and high severity hazards 嚴重及高危危害即時警報"
             checked={notifications.hazardAlerts}
             onChange={() => setNotifications((p) => ({ ...p, hazardAlerts: !p.hazardAlerts }))}
           />
