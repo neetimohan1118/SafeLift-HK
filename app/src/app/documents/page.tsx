@@ -117,7 +117,7 @@ export default function DocumentsPage() {
           return (
             <div
               key={doc.id}
-              className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all cursor-pointer"
+              className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all"
             >
               <div className="p-5">
                 {/* Type Badge + Status */}

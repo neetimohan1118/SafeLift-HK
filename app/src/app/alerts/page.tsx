@@ -12,7 +12,7 @@ import {
   Eye,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { alerts } from "@/lib/mock-data";
+import { alerts as initialAlerts, Alert } from "@/lib/mock-data";
 
 const tabs = [
   { id: "all", label: "All 全部", icon: Bell },
@@ -61,10 +61,15 @@ const priorityConfig: Record<string, {
 
 export default function AlertCenterPage() {
   const [activeTab, setActiveTab] = useState("all");
+  const [alertList, setAlertList] = useState<Alert[]>(initialAlerts);
 
-  const unreadCount = alerts.filter((a) => !a.isRead).length;
+  const unreadCount = alertList.filter((a) => !a.isRead).length;
 
-  const filteredAlerts = alerts.filter((a) => {
+  const handleMarkAllRead = () => {
+    setAlertList((prev) => prev.map((a) => ({ ...a, isRead: true })));
+  };
+
+  const filteredAlerts = alertList.filter((a) => {
     if (activeTab === "all") return true;
     if (activeTab === "unread") return !a.isRead;
     return a.type === activeTab;
@@ -79,7 +84,7 @@ export default function AlertCenterPage() {
       acc[label].push(alert);
       return acc;
     },
-    {} as Record<string, typeof alerts>,
+    {} as Record<string, Alert[]>,
   );
 
   return (
@@ -95,10 +100,13 @@ export default function AlertCenterPage() {
           </p>
         </div>
         <button
-          onClick={() => {/* Demo: mark all read */}}
-          className="text-sm text-sl-orange hover:underline self-start sm:self-auto whitespace-nowrap"
+          onClick={handleMarkAllRead}
+          className={`text-sm hover:underline self-start sm:self-auto whitespace-nowrap ${
+            unreadCount > 0 ? "text-sl-orange" : "text-sl-text-secondary cursor-default"
+          }`}
+          disabled={unreadCount === 0}
         >
-          Mark all read 全部標為已讀
+          {unreadCount > 0 ? "Mark all read 全部標為已讀" : "All read 全部已讀 ✓"}
         </button>
       </div>
 
@@ -110,8 +118,8 @@ export default function AlertCenterPage() {
           const count = tab.id === "unread"
             ? unreadCount
             : tab.id === "all"
-              ? alerts.length
-              : alerts.filter((a) => a.type === tab.id).length;
+              ? alertList.length
+              : alertList.filter((a) => a.type === tab.id).length;
           return (
             <button
               key={tab.id}

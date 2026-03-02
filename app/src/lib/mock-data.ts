@@ -509,8 +509,8 @@ export const dashboardStats = {
 // Upcoming Expirations
 // ==========================================
 export const upcomingExpirations = [
-  { equipment: "Tower Crane TC-03", daysLeft: 7, type: "critical" },
-  { equipment: "Mobile Crane MC-02", daysLeft: 14, type: "high" },
-  { equipment: "Hoist H-17", daysLeft: 25, type: "normal" },
-  { equipment: "Gantry G1-03", daysLeft: 45, type: "normal" },
+  { equipment: "LC-0039-042 UNIC URW-706", daysLeft: 43, type: "high" },
+  { equipment: "TC-2023-015 Liebherr 280 EC-H", daysLeft: 61, type: "high" },
+  { equipment: "GD-0001-003 Konecranes CXT", daysLeft: 121, type: "normal" },
+  { equipment: "MC-2024-003 Potain MCT 205", daysLeft: 141, type: "normal" },
 ];

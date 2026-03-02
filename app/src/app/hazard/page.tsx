@@ -248,7 +248,7 @@ export default function HazardDetectionPage() {
             <span className="text-xs">Zoom</span>
           </button>
           <button
-            onClick={state === "idle" ? runAnalysis : undefined}
+            onClick={state !== "analyzing" ? runAnalysis : undefined}
             className={`flex items-center justify-center h-14 w-14 rounded-full text-white shadow-lg transition-all ${
               state === "analyzing"
                 ? "bg-gray-400 cursor-not-allowed"
