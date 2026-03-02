@@ -39,7 +39,6 @@ export default function RootLayout({
     <html lang="zh-HK">
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         <AppShell>{children}</AppShell>

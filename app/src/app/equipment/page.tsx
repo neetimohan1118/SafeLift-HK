@@ -164,7 +164,7 @@ export default function EquipmentListPage() {
                         <td className="px-6 py-4 text-sl-text">{eq.licensePlate}</td>
                         <td className="px-6 py-4 text-sl-text-secondary">{eq.type}</td>
                         <td className="px-6 py-4 text-sl-text-secondary">{eq.model}</td>
-                        <td className="px-6 py-4 text-sl-text">{eq.maxCapacity}T</td>
+                        <td className="px-6 py-4 text-sl-text">{eq.maxCapacity}t</td>
                         <td className="px-6 py-4">
                           <Badge variant="secondary" className={`${status.className} text-xs font-medium`}>
                             {status.label}
@@ -224,7 +224,7 @@ export default function EquipmentListPage() {
                     </div>
                     <div>
                       <p className="text-sl-text-secondary">Cap. 承載</p>
-                      <p className="font-medium text-sl-text">{eq.maxCapacity}T</p>
+                      <p className="font-medium text-sl-text">{eq.maxCapacity}t</p>
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-3 pt-2 border-t border-sl-border/50">
