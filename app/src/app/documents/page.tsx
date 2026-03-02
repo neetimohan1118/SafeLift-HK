@@ -149,7 +149,8 @@ export default function DocumentsPage() {
               return (
                 <div
                   key={doc.id}
-                  className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all"
+                  onClick={() => showToast(`Opening ${doc.fileName}... 開啟中...`)}
+                  className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all cursor-pointer"
                 >
                   <div className="p-5">
                     {/* Type Badge + Status */}

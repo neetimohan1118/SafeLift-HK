@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import {
   Construction,
   FileWarning,
@@ -35,7 +36,10 @@ const statusColor: Record<string, string> = {
 };
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [showToast, setShowToast] = useState(false);
+
+  const goToHazard = useCallback(() => router.push("/hazard"), [router]);
 
   useEffect(() => {
     const showTimer = setTimeout(() => setShowToast(true), 1200);
@@ -153,7 +157,8 @@ export default function DashboardPage() {
                 {hazardReports.map((r) => (
                   <tr
                     key={r.id}
-                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors"
+                    onClick={goToHazard}
+                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer"
                   >
                     <td className="px-6 py-3 text-sl-text-secondary">
                       {r.reportedAt.split(" ")[0]}
@@ -190,7 +195,8 @@ export default function DashboardPage() {
             {hazardReports.map((r) => (
               <div
                 key={r.id}
-                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors"
+                onClick={goToHazard}
+                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>
