@@ -118,12 +118,13 @@ export default function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-4">
             {loginMethod === "email" ? (
               <div>
-                <label className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
+                <label htmlFor="login-email" className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
                   Email Address 電郵地址
                 </label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
                   <Input
+                    id="login-email"
                     type="email"
                     placeholder="your@company.com"
                     defaultValue="chan.tw@safelift.hk"
@@ -133,12 +134,13 @@ export default function LoginPage() {
               </div>
             ) : (
               <div>
-                <label className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
+                <label htmlFor="login-phone" className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
                   Phone Number 電話號碼
                 </label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
                   <Input
+                    id="login-phone"
                     type="tel"
                     placeholder="+852 XXXX XXXX"
                     defaultValue="+852 9123 4567"
@@ -149,12 +151,13 @@ export default function LoginPage() {
             )}
 
             <div>
-              <label className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
+              <label htmlFor="login-password" className="text-xs font-medium text-sl-text-secondary mb-1.5 block">
                 Password 密碼
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
                 <Input
+                  id="login-password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter password"
                   defaultValue="demo123"

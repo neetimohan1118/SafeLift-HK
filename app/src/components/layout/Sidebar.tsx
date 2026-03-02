@@ -12,13 +12,16 @@ import {
   HardHat,
   MoreVertical,
 } from "lucide-react";
+import { alerts } from "@/lib/mock-data";
+
+const unreadAlertCount = alerts.filter((a) => !a.isRead).length;
 
 const navItems = [
   { href: "/", label: "Dashboard 儀表板", shortLabel: "儀表板", icon: LayoutDashboard, badge: 0 },
   { href: "/hazard", label: "Hazard Detection 危害檢測", shortLabel: "危害檢測", icon: ScanEye, badge: 0 },
   { href: "/equipment", label: "Equipment 設備管理", shortLabel: "設備", icon: Container, badge: 0 },
   { href: "/documents", label: "Documents 文件管理", shortLabel: "文件", icon: Folder, badge: 0 },
-  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell, badge: 3 },
+  { href: "/alerts", label: "Alerts 通知中心", shortLabel: "通知", icon: Bell, badge: unreadAlertCount },
   { href: "/settings", label: "Settings 設定", shortLabel: "設定", icon: Settings, badge: 0 },
 ];
 

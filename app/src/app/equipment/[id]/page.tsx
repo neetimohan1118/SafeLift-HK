@@ -116,7 +116,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
               <DetailRow label="Model 型號" value={equipment.model} />
               <DetailRow label="Max Radius 最大半徑" value={equipment.maxRadius > 0 ? `${equipment.maxRadius}m` : "N/A"} />
               <DetailRow label="Project 項目" value={equipment.projectName} />
-              <DetailRow label="Registration Status 登記狀態" value={equipment.certExpiryDate} />
+              <DetailRow label="Last Maintenance 上次維修" value={equipment.lastMaintenanceDate} />
             </div>
           </div>
 
@@ -192,7 +192,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
                   Expires: {equipment.certExpiryDate}
                 </p>
                 <p className="text-xs text-sl-text-secondary">
-                  Next inspection 下次檢驗: {equipment.lastInspectionDate}
+                  Last inspection 上次檢驗: {equipment.lastInspectionDate}
                 </p>
               </div>
             </div>

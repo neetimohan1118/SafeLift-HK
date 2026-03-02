@@ -194,7 +194,7 @@ export const hazardReports: HazardReport[] = [
   {
     id: "HR-001",
     equipmentId: "LC-2024-001",
-    equipmentName: "Tower Crane TC-03",
+    equipmentName: "Tadano TM-ZZ440",
     reportedBy: "陳大文",
     reportedAt: "2026-03-01 09:23",
     locationName: "Cheung Sha Wan 長沙灣",
@@ -208,7 +208,7 @@ export const hazardReports: HazardReport[] = [
   {
     id: "HR-002",
     equipmentId: "TC-2023-015",
-    equipmentName: "Mobile Crane MC-47",
+    equipmentName: "Liebherr 280 EC-H",
     reportedBy: "李小明",
     reportedAt: "2026-02-28 14:15",
     locationName: "Tsuen Wan 荃灣",
@@ -222,7 +222,7 @@ export const hazardReports: HazardReport[] = [
   {
     id: "HR-003",
     equipmentId: "LC-0039-042",
-    equipmentName: "Hoist H-12",
+    equipmentName: "UNIC URW-706",
     reportedBy: "王志強",
     reportedAt: "2026-02-28 10:42",
     locationName: "Safety Zone 安全區域",
@@ -236,7 +236,7 @@ export const hazardReports: HazardReport[] = [
   {
     id: "HR-004",
     equipmentId: "TC-2023-015",
-    equipmentName: "Tower Crane TC-03",
+    equipmentName: "Liebherr 280 EC-H",
     reportedBy: "張美玲",
     reportedAt: "2026-02-27 16:30",
     locationName: "Tseung Kwan O 將軍澳",
@@ -250,7 +250,7 @@ export const hazardReports: HazardReport[] = [
   {
     id: "HR-005",
     equipmentId: "CB-2024-044",
-    equipmentName: "Gantry G1-45",
+    equipmentName: "Nitchi CB-S97",
     reportedBy: "陳大文",
     reportedAt: "2026-02-27 08:50",
     locationName: "Kai Tak 啟德",

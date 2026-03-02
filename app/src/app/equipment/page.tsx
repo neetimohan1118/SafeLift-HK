@@ -19,6 +19,7 @@ export default function EquipmentListPage() {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   const filtered = equipmentData.filter((e) => {
     const matchSearch =
@@ -26,7 +27,8 @@ export default function EquipmentListPage() {
       e.licensePlate.toLowerCase().includes(search.toLowerCase()) ||
       e.model.toLowerCase().includes(search.toLowerCase());
     const matchType = typeFilter === "all" || e.type.toLowerCase().includes(typeFilter.toLowerCase());
-    return matchSearch && matchType;
+    const matchStatus = statusFilter === "all" || e.status === statusFilter;
+    return matchSearch && matchType && matchStatus;
   });
 
   return (
@@ -77,11 +79,16 @@ export default function EquipmentListPage() {
             <option value="mobile">Mobile Crane 流動吊機</option>
             <option value="gantry">Gantry Crane 門式起重機</option>
           </select>
-          <select className="flex-1 sm:flex-none rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text">
-            <option>Status 狀態 ▾</option>
-            <option>Active 有效</option>
-            <option>Expiring 即將到期</option>
-            <option>Expired 已過期</option>
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="flex-1 sm:flex-none rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
+          >
+            <option value="all">Status 狀態 ▾</option>
+            <option value="active">Active 有效</option>
+            <option value="expiring">Expiring 即將到期</option>
+            <option value="expired">Expired 已過期</option>
+            <option value="maintenance">Maintenance 維修中</option>
           </select>
         </div>
       </div>

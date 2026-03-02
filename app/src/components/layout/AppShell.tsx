@@ -4,10 +4,12 @@ import { usePathname } from "next/navigation";
 import { HardHat, Bell } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
+import { alerts } from "@/lib/mock-data";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLoginPage = pathname === "/login";
+  const unreadCount = alerts.filter((a) => !a.isRead).length;
 
   if (isLoginPage) {
     return <>{children}</>;
@@ -28,9 +30,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-3">
             <Link href="/alerts" className="relative">
               <Bell className="h-5 w-5 text-sl-sidebar-text" />
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-sl-critical text-[9px] font-bold text-white">
-                3
-              </span>
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-sl-critical text-[9px] font-bold text-white">
+                  {unreadCount}
+                </span>
+              )}
             </Link>
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-sl-orange text-[10px] font-bold text-white">
               陳

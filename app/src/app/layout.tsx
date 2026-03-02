@@ -4,7 +4,7 @@ import "./globals.css";
 import AppShell from "@/components/layout/AppShell";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 

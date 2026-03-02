@@ -35,37 +35,37 @@ export default function SettingsPage() {
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-sl-text-secondary mb-1 block">
+            <label htmlFor="settings-name" className="text-xs text-sl-text-secondary mb-1 block">
               Name 姓名
             </label>
-            <Input defaultValue="陳大文" className="bg-white border-sl-border" />
+            <Input id="settings-name" defaultValue="陳大文" className="bg-white border-sl-border" />
           </div>
           <div>
-            <label className="text-xs text-sl-text-secondary mb-1 block">
+            <label htmlFor="settings-role" className="text-xs text-sl-text-secondary mb-1 block">
               Role 角色
             </label>
             <div className="flex items-center gap-2">
-              <Input defaultValue="Site Manager" className="bg-white border-sl-border" disabled />
+              <Input id="settings-role" defaultValue="Site Manager" className="bg-white border-sl-border" disabled />
               <Badge variant="secondary" className="bg-sl-orange/10 text-sl-orange">Admin</Badge>
             </div>
           </div>
           <div>
-            <label className="text-xs text-sl-text-secondary mb-1 block">
+            <label htmlFor="settings-email" className="text-xs text-sl-text-secondary mb-1 block">
               Email 電郵
             </label>
-            <Input defaultValue="chan.tw@safelift.hk" className="bg-white border-sl-border" />
+            <Input id="settings-email" defaultValue="chan.tw@safelift.hk" className="bg-white border-sl-border" />
           </div>
           <div>
-            <label className="text-xs text-sl-text-secondary mb-1 block">
+            <label htmlFor="settings-phone" className="text-xs text-sl-text-secondary mb-1 block">
               Phone 電話
             </label>
-            <Input defaultValue="+852 9123 4567" className="bg-white border-sl-border" />
+            <Input id="settings-phone" defaultValue="+852 9123 4567" className="bg-white border-sl-border" />
           </div>
           <div className="col-span-2">
-            <label className="text-xs text-sl-text-secondary mb-1 block">
+            <label htmlFor="settings-company" className="text-xs text-sl-text-secondary mb-1 block">
               Company 公司
             </label>
-            <Input defaultValue="SafeLift Construction Ltd." className="bg-white border-sl-border" />
+            <Input id="settings-company" defaultValue="SafeLift Construction Ltd." className="bg-white border-sl-border" />
           </div>
         </div>
       </div>
