@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   Upload,
   Search,
@@ -40,6 +40,12 @@ export default function DocumentsPage() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [equipmentFilter, setEquipmentFilter] = useState("all");
+  const [toast, setToast] = useState("");
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
 
   // Extract unique equipment names for filter
   const uniqueEquipment = [...new Set(documents.map((d) => d.equipmentName))];
@@ -54,7 +60,15 @@ export default function DocumentsPage() {
   });
 
   return (
-    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
+    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -65,7 +79,10 @@ export default function DocumentsPage() {
             Manage certificates, inspection reports, and safety records 管理證書、檢驗報告及安全紀錄
           </p>
         </div>
-        <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors self-start sm:self-auto">
+        <button
+          onClick={() => showToast("Upload coming soon 上傳功能即將推出")}
+          className="flex items-center gap-2 rounded-lg bg-sl-orange px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors self-start sm:self-auto"
+        >
           <Upload className="h-4 w-4" />
           Upload Document 上傳文件
         </button>
@@ -124,7 +141,7 @@ export default function DocumentsPage() {
                 <div className="flex items-start justify-between mb-3">
                   <div className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${config.bgColor} ${config.color}`}>
                     <Icon className="h-3.5 w-3.5" />
-                    {config.label.split(" ")[0]}
+                    {config.label}
                   </div>
                   {badge && (
                     <Badge variant="secondary" className={`${badge.className} text-[10px] font-medium`}>

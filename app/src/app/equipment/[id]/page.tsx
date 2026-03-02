@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useCallback } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -44,6 +44,12 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
   const { id } = use(params);
   const equipment = equipmentData.find((e) => e.id === id);
   if (!equipment) notFound();
+
+  const [toast, setToast] = useState("");
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
   const status = statusConfig[equipment.status];
   const relatedDocs = documents.filter((d) => d.equipmentId === equipment.id);
   const relatedHazards = hazardReports.filter((h) => h.equipmentId === equipment.id);
@@ -62,7 +68,15 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
   const donutColor = daysLeft > 90 ? "#16A34A" : daysLeft > 30 ? "#EA580C" : "#DC2626";
 
   return (
-    <div className="p-4 md:p-8 space-y-6 overflow-y-auto animate-fade-in-up">
+    <div className="p-4 md:p-8 space-y-6 overflow-y-auto animate-fade-in-up relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 text-sm text-sl-text-secondary">
         <Link href="/equipment" className="hover:text-sl-orange flex items-center gap-1">
@@ -87,13 +101,13 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
+          <button onClick={() => showToast("Edit coming soon 編輯功能即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
             <Edit className="h-4 w-4" /> Edit 編輯
           </button>
-          <button className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
+          <button onClick={() => showToast("Print QR coming soon 列印二維碼即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
             <Printer className="h-4 w-4" /> Print QR 列印二維碼
           </button>
-          <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-3 py-2 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
+          <button onClick={() => showToast("Decommission coming soon 報廢功能即將推出")} className="flex items-center gap-2 rounded-lg bg-sl-orange px-3 py-2 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
             Decommission 報廢
           </button>
         </div>
@@ -108,7 +122,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
             <h2 className="text-base font-semibold text-sl-text mb-4">
               Equipment Details 設備詳情
             </h2>
-            <div className="grid grid-cols-2 gap-4 text-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
               <DetailRow label="Equipment No. 設備編號" value={equipment.equipmentNumber} />
               <DetailRow label="Type 類型" value={equipment.type} />
               <DetailRow label="Manufacturer 製造商" value={equipment.manufacturer} />

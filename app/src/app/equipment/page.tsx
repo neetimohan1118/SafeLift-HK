@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, QrCode, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -20,6 +20,12 @@ export default function EquipmentListPage() {
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [toast, setToast] = useState("");
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
 
   const filtered = equipmentData.filter((e) => {
     const matchSearch =
@@ -32,7 +38,15 @@ export default function EquipmentListPage() {
   });
 
   return (
-    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
+    <div className="p-4 md:p-8 space-y-6 animate-fade-in-up relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
@@ -44,7 +58,7 @@ export default function EquipmentListPage() {
           </p>
         </div>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-3 md:px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
+          <button onClick={() => showToast("Add equipment coming soon 新增設備功能即將推出")} className="flex items-center gap-2 rounded-lg bg-sl-orange px-3 md:px-4 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
             <Plus className="h-4 w-4" />
             <span className="hidden sm:inline">Add Equipment</span> 新增設備
           </button>

@@ -77,6 +77,12 @@ export default function HazardDetectionPage() {
   const [analysisProgress, setAnalysisProgress] = useState(0);
   const [visibleHazards, setVisibleHazards] = useState(0);
   const timerCleanupRef = useRef<(() => void) | null>(null);
+  const [toast, setToast] = useState("");
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
 
   useEffect(() => {
     return () => { timerCleanupRef.current?.(); };
@@ -130,7 +136,15 @@ export default function HazardDetectionPage() {
 
 
   return (
-    <div className="flex flex-col lg:flex-row lg:h-full">
+    <div className="flex flex-col lg:flex-row lg:h-full relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Photo Panel */}
       <div className="flex-1 flex flex-col bg-slate-100 p-4 md:p-6 gap-4">
         <div>
@@ -352,6 +366,10 @@ export default function HazardDetectionPage() {
                         <p className="text-xs text-sl-text-secondary mt-1">
                           {hazard.description_zh}
                         </p>
+                        <div className="mt-2 rounded-md bg-slate-50 px-3 py-2 text-xs text-sl-text-secondary">
+                          <span className="font-medium text-sl-text">Recommended 建議:</span>{" "}
+                          {hazard.recommended_en} / {hazard.recommended_zh}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -402,6 +420,7 @@ export default function HazardDetectionPage() {
                 : "bg-gray-200 text-gray-400 cursor-not-allowed"
             }`}
             disabled={state !== "done"}
+            onClick={() => state === "done" && showToast("Hazards confirmed 危害已確認 ✓")}
           >
             <CheckCircle className="h-4 w-4" />
             Confirm Hazards 確認危害

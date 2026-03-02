@@ -1,14 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Flashlight, SwitchCamera, QrCode, CheckCircle } from "lucide-react";
+import { ArrowLeft, Flashlight, SwitchCamera, QrCode, CheckCircle, RotateCcw } from "lucide-react";
 import Link from "next/link";
 
 export default function ScanPage() {
   const router = useRouter();
   const [scanState, setScanState] = useState<"scanning" | "found" | "navigating">("scanning");
   const [scanLinePos, setScanLinePos] = useState(0);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   // Animate scan line
   useEffect(() => {
@@ -19,9 +20,16 @@ export default function ScanPage() {
     return () => clearInterval(interval);
   }, [scanState]);
 
+  const cancelScan = useCallback(() => {
+    timersRef.current.forEach(clearTimeout);
+    timersRef.current = [];
+    setScanState("scanning");
+    setScanLinePos(0);
+  }, []);
+
   // Auto-detect after 3 seconds for demo
   useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    const timers = timersRef.current;
     const timer = setTimeout(() => {
       setScanState("found");
       const t2 = setTimeout(() => {
@@ -34,7 +42,7 @@ export default function ScanPage() {
       timers.push(t2);
     }, 3000);
     timers.push(timer);
-    return () => { timers.forEach(clearTimeout); };
+    return () => { timers.forEach(clearTimeout); timersRef.current = []; };
   }, [router]);
 
   return (
@@ -141,6 +149,15 @@ export default function ScanPage() {
           </div>
           <span className="text-[10px]">Flash 閃光</span>
         </button>
+
+        {scanState !== "scanning" && (
+          <button onClick={cancelScan} className="flex flex-col items-center gap-1 text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sl-orange">
+              <RotateCcw className="h-5 w-5" />
+            </div>
+            <span className="text-[10px]">Rescan 重掃</span>
+          </button>
+        )}
 
         <button className="flex flex-col items-center gap-1 text-white/60">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">

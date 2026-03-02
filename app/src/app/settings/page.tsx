@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { User, Globe, Bell, Shield, Palette, Save } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
 export default function SettingsPage() {
+  const [toast, setToast] = useState("");
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
   const [language, setLanguage] = useState("zh-HK");
   const [notifications, setNotifications] = useState({
     certExpiry: true,
@@ -16,7 +21,15 @@ export default function SettingsPage() {
   });
 
   return (
-    <div className="p-4 md:p-8 space-y-6 max-w-3xl animate-fade-in-up">
+    <div className="p-4 md:p-8 space-y-6 max-w-3xl animate-fade-in-up relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div>
         <h1 className="text-2xl font-bold text-sl-text">Settings 設定</h1>
@@ -154,7 +167,7 @@ export default function SettingsPage() {
           </h2>
         </div>
         <div className="space-y-3">
-          <button className="text-sm text-sl-orange hover:underline">
+          <button onClick={() => showToast("Password change coming soon 更改密碼功能即將推出")} className="text-sm text-sl-orange hover:underline">
             Change Password 更改密碼
           </button>
           <p className="text-xs text-sl-text-secondary">
@@ -182,7 +195,7 @@ export default function SettingsPage() {
 
       {/* Save Button */}
       <div className="flex justify-end">
-        <button className="flex items-center gap-2 rounded-lg bg-sl-orange px-6 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
+        <button onClick={() => showToast("Settings saved 設定已儲存 ✓")} className="flex items-center gap-2 rounded-lg bg-sl-orange px-6 py-2.5 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
           <Save className="h-4 w-4" />
           Save Changes 儲存更改
         </button>

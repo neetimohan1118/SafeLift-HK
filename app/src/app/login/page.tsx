@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { HardHat, Mail, Phone, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,12 @@ export default function LoginPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
+  const [toast, setToast] = useState("");
+
+  const showToast = useCallback((msg: string) => {
+    setToast(msg);
+    setTimeout(() => setToast(""), 2500);
+  }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +22,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex relative">
+      {/* Toast */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in-up">
+          <div className="rounded-lg bg-sl-sidebar-bg text-white px-4 py-2.5 text-sm shadow-lg">
+            {toast}
+          </div>
+        </div>
+      )}
       {/* Left Panel - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-sl-sidebar-bg flex-col justify-between p-12 relative overflow-hidden">
         {/* Background pattern */}
@@ -186,7 +200,7 @@ export default function LoginPage() {
                 />
                 Remember me 記住我
               </label>
-              <button type="button" className="text-sl-orange hover:underline">
+              <button type="button" onClick={() => showToast("Please contact admin 請聯繫管理員")} className="text-sl-orange hover:underline">
                 Forgot password? 忘記密碼？
               </button>
             </div>
