@@ -69,7 +69,7 @@ export default function ScanPage() {
       <div className="flex items-center justify-between p-4 text-white z-10">
         <Link href="/equipment" className="flex items-center gap-2 text-sm">
           <ArrowLeft className="h-5 w-5" />
-          Back
+          Back 返回
         </Link>
         <h1 className="text-sm font-medium">Scan QR Code 掃描二維碼</h1>
         <div className="w-16" />
@@ -123,13 +123,13 @@ export default function ScanPage() {
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sl-safe/20 backdrop-blur-sm">
                       <CheckCircle className="h-8 w-8 text-sl-safe" />
                     </div>
-                    <p className="text-white text-sm font-medium">QR Code Detected!</p>
+                    <p className="text-white text-sm font-medium">QR Code Detected! 已偵測到二維碼</p>
                     <p className="text-white/70 text-xs">Equipment: LC-2024-001</p>
                   </>
                 ) : (
                   <>
                     <div className="h-8 w-8 rounded-full border-2 border-white border-t-transparent animate-spin" />
-                    <p className="text-white text-sm">Loading equipment...</p>
+                    <p className="text-white text-sm">Loading equipment... 正在載入設備</p>
                   </>
                 )}
               </div>
@@ -151,7 +151,7 @@ export default function ScanPage() {
               ? "Point camera at equipment QR code"
               : scanState === "found"
                 ? "Equipment found 設備已識別"
-                : "Opening equipment profile..."}
+                : "Opening equipment profile... 正在開啟設備資料"}
           </p>
           <p className="text-white/60 text-xs mt-1">
             {scanState === "scanning" && "將相機對準設備二維碼"}
