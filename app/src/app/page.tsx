@@ -35,6 +35,20 @@ const statusColor: Record<string, string> = {
   in_review: "bg-blue-100 text-blue-700",
 };
 
+const severityLabel: Record<string, string> = {
+  critical: "CRITICAL 嚴重",
+  high: "HIGH 高危",
+  medium: "MEDIUM 中等",
+  low: "LOW 低危",
+};
+
+const statusLabel: Record<string, string> = {
+  open: "open 待處理",
+  confirmed: "confirmed 已確認",
+  resolved: "resolved 已處理",
+  in_review: "in review 審查中",
+};
+
 export default function DashboardPage() {
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
@@ -180,7 +194,7 @@ export default function DashboardPage() {
                         variant="secondary"
                         className={`${severityColor[r.severity]} text-xs font-medium`}
                       >
-                        {r.severity.toUpperCase()}
+                        {severityLabel[r.severity] || r.severity.toUpperCase()}
                       </Badge>
                     </td>
                     <td className="px-6 py-3">
@@ -188,7 +202,7 @@ export default function DashboardPage() {
                         variant="secondary"
                         className={`${statusColor[r.status]} text-xs font-medium`}
                       >
-                        {r.status.replaceAll("_", " ")}
+                        {statusLabel[r.status] || r.status.replaceAll("_", " ")}
                       </Badge>
                     </td>
                   </tr>
@@ -214,10 +228,10 @@ export default function DashboardPage() {
                 </div>
                 <div className="flex items-center gap-2 ml-2 shrink-0">
                   <Badge variant="secondary" className={`${severityColor[r.severity]} text-xs font-medium`}>
-                    {r.severity.toUpperCase()}
+                    {severityLabel[r.severity] || r.severity.toUpperCase()}
                   </Badge>
                   <Badge variant="secondary" className={`${statusColor[r.status]} text-xs font-medium`}>
-                    {r.status.replaceAll("_", " ")}
+                    {statusLabel[r.status] || r.status.replaceAll("_", " ")}
                   </Badge>
                 </div>
               </div>
@@ -259,7 +273,7 @@ export default function DashboardPage() {
                           : "bg-yellow-100 text-yellow-700"
                     }`}
                   >
-                    {e.daysLeft} days
+                    {e.daysLeft} 天
                   </Badge>
                 </Link>
               ))}
