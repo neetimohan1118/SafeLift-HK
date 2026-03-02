@@ -264,14 +264,14 @@ export default function DashboardPage() {
                 <Link
                   key={e.id}
                   href={`/equipment/${e.id}`}
-                  className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-sl-bg transition-colors"
+                  className="flex items-center justify-between gap-3 py-2 px-3 rounded-lg hover:bg-sl-bg transition-colors"
                 >
-                  <div>
-                    <p className="text-sm font-medium text-sl-text">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium text-sl-text truncate">
                       {e.equipment}
                     </p>
-                    <p className="text-xs text-sl-text-secondary">
-                      Certificate expires in {e.daysLeft} days · 證書{e.daysLeft}天後到期
+                    <p className="text-xs text-sl-text-secondary truncate">
+                      Expires in {e.daysLeft}d · 證書{e.daysLeft}天後到期
                     </p>
                   </div>
                   <Badge

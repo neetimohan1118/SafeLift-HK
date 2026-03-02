@@ -532,7 +532,6 @@ export const upcomingExpirations = equipmentData
       id: e.id,
       equipment: `${e.equipmentNumber} ${e.model}`,
       daysLeft,
-      type: daysLeft <= 60 ? "high" : "normal",
     };
   })
   .sort((a, b) => a.daysLeft - b.daysLeft)
