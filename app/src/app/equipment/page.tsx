@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, QrCode, Search, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { Plus, QrCode, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { equipmentData } from "@/lib/mock-data";
