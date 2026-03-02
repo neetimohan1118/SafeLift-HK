@@ -201,7 +201,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
                   <span className="text-2xl font-bold text-sl-text">{daysLeft}</span>
-                  <span className="text-xs text-sl-text-secondary">days left</span>
+                  <span className="text-xs text-sl-text-secondary">days left 剩餘天數</span>
                 </div>
               </div>
               <div className="text-center mt-3">

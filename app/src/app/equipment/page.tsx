@@ -78,6 +78,7 @@ export default function EquipmentListPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
           <Input
+            aria-label="Search equipment 搜尋設備"
             placeholder="Search by plate or equipment no. 按車牌或編號搜尋..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -88,6 +89,7 @@ export default function EquipmentListPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
+            aria-label="Filter by equipment type 按類型篩選"
             className="flex-1 sm:flex-none rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
           >
             <option value="all">Type 類型 ▾</option>
@@ -100,6 +102,7 @@ export default function EquipmentListPage() {
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
+            aria-label="Filter by status 按狀態篩選"
             className="flex-1 sm:flex-none rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
           >
             <option value="all">Status 狀態 ▾</option>

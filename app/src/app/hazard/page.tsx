@@ -272,7 +272,7 @@ export default function HazardDetectionPage() {
         <div className="flex items-center justify-center gap-6 py-2">
           <button onClick={() => showToast("Zoom not available in demo 縮放功能不適用於演示模式")} className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
             <ZoomIn className="h-5 w-5" />
-            <span className="text-xs">Zoom</span>
+            <span className="text-xs">Zoom 縮放</span>
           </button>
           <button
             onClick={runAnalysis}
@@ -292,7 +292,7 @@ export default function HazardDetectionPage() {
           </button>
           <button onClick={() => showToast("Flash not available in demo 閃光燈不適用於演示模式")} className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
             <Zap className="h-5 w-5" />
-            <span className="text-xs">Flash</span>
+            <span className="text-xs">Flash 閃光</span>
           </button>
         </div>
       </div>
@@ -301,7 +301,7 @@ export default function HazardDetectionPage() {
       <div className="w-full lg:w-[460px] flex flex-col bg-white lg:border-l border-t lg:border-t-0 border-sl-border overflow-y-auto">
         <div className="p-6 border-b border-sl-border">
           <h2 className="text-lg font-bold text-sl-text">
-            AI Analysis Results
+            AI Analysis Results AI分析結果
           </h2>
           {state === "done" ? (
             <>
@@ -309,7 +309,7 @@ export default function HazardDetectionPage() {
                 {mockHazards.length} hazards detected 偵測到{mockHazards.length}項危害
               </p>
               <div className="mt-4 flex items-center gap-2">
-                <span className="text-sm text-sl-text-secondary">Overall Risk:</span>
+                <span className="text-sm text-sl-text-secondary">Overall Risk 整體風險:</span>
                 <Badge className="bg-orange-500 text-white font-bold px-3">
                   HIGH 高危
                 </Badge>
@@ -415,10 +415,10 @@ export default function HazardDetectionPage() {
             <div className="flex flex-col items-center justify-center h-full text-center py-16">
               <Camera className="h-12 w-12 text-sl-text-secondary/30 mb-4" />
               <p className="text-sm text-sl-text-secondary">
-                No analysis results yet
+                No analysis results yet 暫無分析結果
               </p>
               <p className="text-xs text-sl-text-secondary mt-1">
-                點擊拍攝按鈕開始分析
+                Click capture to begin 點擊拍攝按鈕開始分析
               </p>
             </div>
           )}

@@ -98,6 +98,7 @@ export default function DocumentsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sl-text-secondary" />
           <Input
+            aria-label="Search documents 搜尋文件"
             placeholder="Search by equipment no., plate, or keyword 搜尋..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -108,6 +109,7 @@ export default function DocumentsPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
+            aria-label="Filter by document type 按文件類型篩選"
             className="rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text whitespace-nowrap"
           >
             <option value="all">Document Type 文件類型 ▾</option>
@@ -120,6 +122,7 @@ export default function DocumentsPage() {
           <select
             value={equipmentFilter}
             onChange={(e) => setEquipmentFilter(e.target.value)}
+            aria-label="Filter by equipment 按設備篩選"
             className="rounded-lg border border-sl-border bg-white px-3 py-2.5 text-sm text-sl-text"
           >
             <option value="all">Equipment 設備 ▾</option>
@@ -227,7 +230,7 @@ export default function DocumentsPage() {
               <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
                 <ChevronLeft className="h-4 w-4" /> Previous
               </button>
-              <button className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
+              <button aria-current="page" aria-label="Page 1" className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
                 1
               </button>
               <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
