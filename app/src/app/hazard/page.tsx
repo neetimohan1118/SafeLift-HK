@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import {
   Camera,
   ZoomIn,
@@ -76,6 +76,11 @@ export default function HazardDetectionPage() {
   const [state, setState] = useState<AnalysisState>("done");
   const [analysisProgress, setAnalysisProgress] = useState(100);
   const [visibleHazards, setVisibleHazards] = useState(mockHazards.length);
+  const timerCleanupRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    return () => { timerCleanupRef.current?.(); };
+  }, []);
 
   const criticalCount = mockHazards.filter((h) => h.severity === "critical").length;
   const highCount = mockHazards.filter((h) => h.severity === "high").length;
@@ -98,15 +103,23 @@ export default function HazardDetectionPage() {
     }, 60);
 
     // Reveal hazards one by one
-    setTimeout(() => setVisibleHazards(1), 1500);
-    setTimeout(() => setVisibleHazards(2), 2200);
-    setTimeout(() => setVisibleHazards(3), 2800);
-    setTimeout(() => {
+    const t1 = setTimeout(() => setVisibleHazards(1), 1500);
+    const t2 = setTimeout(() => setVisibleHazards(2), 2200);
+    const t3 = setTimeout(() => setVisibleHazards(3), 2800);
+    const t4 = setTimeout(() => {
       setVisibleHazards(4);
       setState("done");
       clearInterval(progressInterval);
       setAnalysisProgress(100);
     }, 3500);
+
+    timerCleanupRef.current = () => {
+      clearInterval(progressInterval);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+    };
   }, []);
 
   const handleRetake = () => {

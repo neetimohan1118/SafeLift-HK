@@ -189,9 +189,11 @@ export default function AlertCenterPage() {
 
 function isToday(dateStr: string): boolean {
   const today = new Date().toISOString().split("T")[0];
-  return dateStr === today || dateStr === "2026-03-01";
+  return dateStr === today;
 }
 
 function isYesterday(dateStr: string): boolean {
-  return dateStr === "2026-02-28";
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return dateStr === yesterday.toISOString().split("T")[0];
 }

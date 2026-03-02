@@ -111,12 +111,9 @@ export default function EquipmentListPage() {
                     className="border-b border-sl-border/50 hover:bg-sl-bg/30 transition-colors cursor-pointer"
                   >
                     <td className="px-6 py-4">
-                      <Link
-                        href={`/equipment/${eq.id}`}
-                        className="font-medium text-sl-text hover:text-sl-orange transition-colors"
-                      >
+                      <span className="font-medium text-sl-text hover:text-sl-orange transition-colors">
                         {eq.equipmentNumber}
-                      </Link>
+                      </span>
                     </td>
                     <td className="px-6 py-4 text-sl-text">{eq.licensePlate}</td>
                     <td className="px-6 py-4 text-sl-text-secondary">{eq.type}</td>

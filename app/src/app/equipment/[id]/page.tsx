@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   ArrowLeft,
   Edit,
@@ -41,7 +42,8 @@ const maintenanceColor: Record<string, string> = {
 
 export default function EquipmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const equipment = equipmentData.find((e) => e.id === id) || equipmentData[0];
+  const equipment = equipmentData.find((e) => e.id === id);
+  if (!equipment) notFound();
   const status = statusConfig[equipment.status];
   const relatedDocs = documents.filter((d) => d.equipmentId === equipment.id);
   const relatedHazards = hazardReports.filter((h) => h.equipmentId === equipment.id);
@@ -75,7 +77,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
         <div>
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-xl md:text-2xl font-bold text-sl-text">{equipment.model} 吊臂車</h1>
+            <h1 className="text-xl md:text-2xl font-bold text-sl-text">{equipment.model} {equipment.type}</h1>
             <Badge variant="secondary" className={`${status.className} font-medium`}>
               {status.label}
             </Badge>

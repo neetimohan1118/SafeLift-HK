@@ -21,17 +21,20 @@ export default function ScanPage() {
 
   // Auto-detect after 3 seconds for demo
   useEffect(() => {
+    const timers: ReturnType<typeof setTimeout>[] = [];
     const timer = setTimeout(() => {
       setScanState("found");
-      // Navigate to equipment after brief pause
-      setTimeout(() => {
+      const t2 = setTimeout(() => {
         setScanState("navigating");
-        setTimeout(() => {
+        const t3 = setTimeout(() => {
           router.push("/equipment/LC-2024-001");
         }, 800);
+        timers.push(t3);
       }, 1200);
+      timers.push(t2);
     }, 3000);
-    return () => clearTimeout(timer);
+    timers.push(timer);
+    return () => { timers.forEach(clearTimeout); };
   }, [router]);
 
   return (

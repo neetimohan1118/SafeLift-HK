@@ -154,7 +154,7 @@ export default function DashboardPage() {
                       {r.equipmentName}
                     </td>
                     <td className="px-6 py-3 text-sl-text-secondary">
-                      {r.hazardType.replace("_", " ")}
+                      {r.hazardType.replaceAll("_", " ")}
                     </td>
                     <td className="px-6 py-3">
                       <Badge
@@ -169,7 +169,7 @@ export default function DashboardPage() {
                         variant="secondary"
                         className={`${statusColor[r.status]} text-xs font-medium`}
                       >
-                        {r.status.replace("_", " ")}
+                        {r.status.replaceAll("_", " ")}
                       </Badge>
                     </td>
                   </tr>
@@ -186,14 +186,14 @@ export default function DashboardPage() {
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>
-                  <p className="text-xs text-sl-text-secondary">{r.reportedAt.split(" ")[0]} · {r.hazardType.replace("_", " ")}</p>
+                  <p className="text-xs text-sl-text-secondary">{r.reportedAt.split(" ")[0]} · {r.hazardType.replaceAll("_", " ")}</p>
                 </div>
                 <div className="flex items-center gap-2 ml-2 shrink-0">
                   <Badge variant="secondary" className={`${severityColor[r.severity]} text-xs font-medium`}>
                     {r.severity.toUpperCase()}
                   </Badge>
                   <Badge variant="secondary" className={`${statusColor[r.status]} text-xs font-medium`}>
-                    {r.status.replace("_", " ")}
+                    {r.status.replaceAll("_", " ")}
                   </Badge>
                 </div>
               </div>
