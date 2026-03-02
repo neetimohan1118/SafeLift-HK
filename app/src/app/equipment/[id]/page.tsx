@@ -113,7 +113,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
           <button onClick={() => showToast("Print QR coming soon 列印二維碼即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
             <Printer className="h-4 w-4" /> Print QR 列印二維碼
           </button>
-          <button onClick={() => showToast("Decommission coming soon 報廢功能即將推出")} className="flex items-center gap-2 rounded-lg bg-sl-orange px-3 py-2 text-sm font-medium text-white hover:bg-sl-orange/90 transition-colors">
+          <button onClick={() => showToast("Decommission coming soon 報廢功能即將推出")} className="flex items-center gap-2 rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors">
             Decommission 報廢
           </button>
         </div>

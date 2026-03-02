@@ -86,7 +86,7 @@ export default function Sidebar() {
               <p className="text-sm font-medium text-white truncate">陳大文</p>
               <p className="text-xs text-sl-sidebar-text truncate">Site Manager</p>
             </div>
-            <Link href="/settings" className="text-sl-sidebar-text hover:text-white">
+            <Link href="/settings" className="text-sl-sidebar-text hover:text-white" aria-label="Settings 設定">
               <MoreVertical className="h-4 w-4" />
             </Link>
           </div>

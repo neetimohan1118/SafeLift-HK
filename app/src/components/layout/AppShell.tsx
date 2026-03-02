@@ -28,7 +28,7 @@ function AppShellInner({ children }: { children: React.ReactNode }) {
             <span className="text-sm font-bold text-white">SafeLift HK</span>
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/alerts" className="relative">
+            <Link href="/alerts" className="relative" aria-label="Alerts 通知中心">
               <Bell className="h-5 w-5 text-sl-sidebar-text" />
               {unreadCount > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-sl-critical text-[9px] font-bold text-white">
