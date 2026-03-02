@@ -317,15 +317,15 @@ export default function HazardDetectionPage() {
               <div className="mt-3 flex gap-3 text-xs">
                 <span className="flex items-center gap-1">
                   <span className="h-2 w-2 rounded-full bg-red-600" />
-                  Critical: {criticalCount}
+                  Critical 嚴重: {criticalCount}
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="h-2 w-2 rounded-full bg-orange-500" />
-                  High: {highCount}
+                  High 高危: {highCount}
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="h-2 w-2 rounded-full bg-yellow-500" />
-                  Medium: {mediumCount}
+                  Medium 中等: {mediumCount}
                 </span>
               </div>
             </>
