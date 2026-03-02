@@ -150,7 +150,7 @@ export default function AlertCenterPage() {
                 return (
                   <div
                     key={alert.id}
-                    className={`bg-white rounded-xl border border-sl-border border-l-4 ${config.borderColor} p-5 hover:shadow-sm transition-shadow ${
+                    className={`rounded-xl border border-sl-border border-l-4 ${config.borderColor} p-5 hover:shadow-sm transition-shadow ${
                       !alert.isRead ? "bg-white" : "bg-sl-bg/50"
                     }`}
                   >

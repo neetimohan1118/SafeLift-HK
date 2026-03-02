@@ -363,6 +363,13 @@ export const documents: Document[] = [
 // ==========================================
 // Alerts
 // ==========================================
+// Generate relative dates so "Today" / "Yesterday" grouping works at demo time
+function relativeDate(daysAgo: number, time: string): string {
+  const d = new Date();
+  d.setDate(d.getDate() - daysAgo);
+  return `${d.toISOString().split("T")[0]} ${time}`;
+}
+
 export const alerts: Alert[] = [
   {
     id: "ALT-001",
@@ -374,7 +381,7 @@ export const alerts: Alert[] = [
     equipmentId: "LC-2024-001",
     priority: "critical",
     isRead: false,
-    createdAt: "2026-03-01 09:25",
+    createdAt: relativeDate(0, "09:25"),
   },
   {
     id: "ALT-002",
@@ -386,7 +393,7 @@ export const alerts: Alert[] = [
     equipmentId: "TC-2023-015",
     priority: "high",
     isRead: false,
-    createdAt: "2026-03-01 06:00",
+    createdAt: relativeDate(0, "06:00"),
   },
   {
     id: "ALT-003",
@@ -398,7 +405,7 @@ export const alerts: Alert[] = [
     equipmentId: "TC-2023-015",
     priority: "high",
     isRead: false,
-    createdAt: "2026-02-28 14:20",
+    createdAt: relativeDate(1, "14:20"),
   },
   {
     id: "ALT-004",
@@ -410,7 +417,7 @@ export const alerts: Alert[] = [
     equipmentId: "CB-0003-019",
     priority: "normal",
     isRead: true,
-    createdAt: "2026-02-27 06:00",
+    createdAt: relativeDate(2, "06:00"),
   },
   {
     id: "ALT-005",
@@ -422,7 +429,7 @@ export const alerts: Alert[] = [
     equipmentId: "LC-0039-042",
     priority: "resolved",
     isRead: true,
-    createdAt: "2026-02-26 17:30",
+    createdAt: relativeDate(3, "17:30"),
   },
 ];
 
@@ -463,7 +470,7 @@ export const maintenanceRecords: MaintenanceRecord[] = [
     type: "routine",
     date: "2026-01-20",
     performedBy: "Engineer Lee",
-    description: "Annual inspection — Passed 月例檢查 — 合格",
+    description: "Annual inspection — Passed 年度檢查 — 合格",
     description_zh: "年度例行檢查 — 全部合格",
   },
   {
@@ -499,10 +506,10 @@ export const maintenanceRecords: MaintenanceRecord[] = [
 // Dashboard Stats
 // ==========================================
 export const dashboardStats = {
-  activeEquipment: 24,
-  expiringCertificates: 3,
-  openHazards: 7,
-  reportsThisMonth: 42,
+  activeEquipment: equipmentData.filter((e) => e.status === "active").length,
+  expiringCertificates: equipmentData.filter((e) => e.status === "expiring").length,
+  openHazards: hazardReports.filter((r) => r.status === "open" || r.status === "in_review").length,
+  reportsThisMonth: hazardReports.length,
 };
 
 // ==========================================

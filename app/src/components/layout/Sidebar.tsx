@@ -95,7 +95,7 @@ export default function Sidebar() {
 
       {/* Mobile Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex md:hidden bg-sl-sidebar-bg border-t border-white/10 safe-bottom">
-        {navItems.slice(0, 5).map((item) => {
+        {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
             (item.href !== "/" && pathname.startsWith(item.href));

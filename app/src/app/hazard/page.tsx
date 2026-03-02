@@ -73,9 +73,9 @@ const severityConfig = {
 type AnalysisState = "idle" | "analyzing" | "done";
 
 export default function HazardDetectionPage() {
-  const [state, setState] = useState<AnalysisState>("done");
-  const [analysisProgress, setAnalysisProgress] = useState(100);
-  const [visibleHazards, setVisibleHazards] = useState(mockHazards.length);
+  const [state, setState] = useState<AnalysisState>("idle");
+  const [analysisProgress, setAnalysisProgress] = useState(0);
+  const [visibleHazards, setVisibleHazards] = useState(0);
   const timerCleanupRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {

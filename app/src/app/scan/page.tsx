@@ -75,10 +75,10 @@ export default function ScanPage() {
         {/* Scan frame */}
         <div className="relative w-64 h-64 md:w-72 md:h-72">
           {/* Corner markers */}
-          <div className="absolute top-0 left-0 w-8 h-8 border-t-3 border-l-3 border-sl-orange rounded-tl-lg" />
-          <div className="absolute top-0 right-0 w-8 h-8 border-t-3 border-r-3 border-sl-orange rounded-tr-lg" />
-          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-3 border-l-3 border-sl-orange rounded-bl-lg" />
-          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-3 border-r-3 border-sl-orange rounded-br-lg" />
+          <div className="absolute top-0 left-0 w-8 h-8 border-t-[3px] border-l-[3px] border-sl-orange rounded-tl-lg" />
+          <div className="absolute top-0 right-0 w-8 h-8 border-t-[3px] border-r-[3px] border-sl-orange rounded-tr-lg" />
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-[3px] border-l-[3px] border-sl-orange rounded-bl-lg" />
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-[3px] border-r-[3px] border-sl-orange rounded-br-lg" />
 
           {/* Scan line */}
           {scanState === "scanning" && (

@@ -33,7 +33,7 @@ export default function SettingsPage() {
             Profile 個人資料
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="settings-name" className="text-xs text-sl-text-secondary mb-1 block">
               Name 姓名
@@ -61,7 +61,7 @@ export default function SettingsPage() {
             </label>
             <Input id="settings-phone" defaultValue="+852 9123 4567" className="bg-white border-sl-border" />
           </div>
-          <div className="col-span-2">
+          <div className="sm:col-span-2">
             <label htmlFor="settings-company" className="text-xs text-sl-text-secondary mb-1 block">
               Company 公司
             </label>
@@ -209,6 +209,8 @@ function ToggleRow({
         <p className="text-xs text-sl-text-secondary">{description}</p>
       </div>
       <button
+        role="switch"
+        aria-checked={checked}
         onClick={onChange}
         className={`relative h-6 w-11 rounded-full transition-colors ${
           checked ? "bg-sl-orange" : "bg-gray-300"
