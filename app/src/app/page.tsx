@@ -49,6 +49,14 @@ const statusLabel: Record<string, string> = {
   in_review: "in review 審查中",
 };
 
+const hazardTypeLabel: Record<string, string> = {
+  ZONE_VIOLATION: "Zone Violation 違規進入",
+  RIGGING_IMPROPER: "Rigging Improper 吊索不當",
+  PPE_MISSING: "PPE Missing 防護缺失",
+  GROUND_UNSTABLE: "Ground Unstable 地面不穩",
+  LOAD_UNSAFE: "Load Unsafe 負載不安全",
+};
+
 export default function DashboardPage() {
   const router = useRouter();
   const [showToast, setShowToast] = useState(false);
@@ -187,7 +195,7 @@ export default function DashboardPage() {
                       {r.equipmentName}
                     </td>
                     <td className="px-6 py-3 text-sl-text-secondary">
-                      {r.hazardType.replaceAll("_", " ")}
+                      {hazardTypeLabel[r.hazardType] || r.hazardType.replaceAll("_", " ")}
                     </td>
                     <td className="px-6 py-3">
                       <Badge
@@ -224,7 +232,7 @@ export default function DashboardPage() {
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>
-                  <p className="text-xs text-sl-text-secondary">{r.reportedAt.split(" ")[0]} · {r.hazardType.replaceAll("_", " ")}</p>
+                  <p className="text-xs text-sl-text-secondary">{r.reportedAt.split(" ")[0]} · {hazardTypeLabel[r.hazardType] || r.hazardType.replaceAll("_", " ")}</p>
                 </div>
                 <div className="flex items-center gap-2 ml-2 shrink-0">
                   <Badge variant="secondary" className={`${severityColor[r.severity]} text-xs font-medium`}>
