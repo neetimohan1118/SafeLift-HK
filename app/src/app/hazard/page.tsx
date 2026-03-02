@@ -205,7 +205,7 @@ export default function HazardDetectionPage() {
           <div className="absolute top-4 right-4 z-10">
             <Badge className="bg-black/60 text-white px-3 py-1 text-xs flex items-center gap-1.5">
               <Sparkles className="h-3 w-3" />
-              {state === "analyzing" ? "Analyzing... 分析中" : "AI Detection On AI偵測"}
+              {state === "analyzing" ? "Analyzing... 分析中" : "AI Detection On AI偵測已啟動"}
             </Badge>
           </div>
 
