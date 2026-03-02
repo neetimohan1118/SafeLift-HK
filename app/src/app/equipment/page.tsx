@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Plus, QrCode, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ const statusConfig: Record<string, { label: string; className: string }> = {
 };
 
 export default function EquipmentListPage() {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("all");
 
@@ -105,6 +107,7 @@ export default function EquipmentListPage() {
                 return (
                   <tr
                     key={eq.id}
+                    onClick={() => router.push(`/equipment/${eq.id}`)}
                     className="border-b border-sl-border/50 hover:bg-sl-bg/30 transition-colors cursor-pointer"
                   >
                     <td className="px-6 py-4">
