@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { HardHat, Mail, Phone, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -11,10 +11,13 @@ export default function LoginPage() {
   const [loginMethod, setLoginMethod] = useState<"email" | "phone">("email");
   const [toast, setToast] = useState("");
 
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

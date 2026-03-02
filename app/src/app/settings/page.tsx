@@ -1,16 +1,19 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { User, Globe, Bell, Shield, Palette, Save } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 
 export default function SettingsPage() {
   const [toast, setToast] = useState("");
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
   const [language, setLanguage] = useState("zh-HK");
   const [notifications, setNotifications] = useState({
     certExpiry: true,

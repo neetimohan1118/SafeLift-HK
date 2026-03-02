@@ -12,9 +12,11 @@ export default function ScanPage() {
   const [toast, setToast] = useState("");
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
 
   // Animate scan line
@@ -48,7 +50,7 @@ export default function ScanPage() {
       timers.push(t2);
     }, 3000);
     timers.push(timer);
-    return () => { timers.forEach(clearTimeout); timersRef.current = []; };
+    return () => { timers.forEach(clearTimeout); timersRef.current = []; clearTimeout(toastTimerRef.current); };
   }, [router]);
 
   return (

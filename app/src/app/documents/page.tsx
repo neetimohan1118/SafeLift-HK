@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import {
   Upload,
   Search,
@@ -43,10 +43,13 @@ export default function DocumentsPage() {
   const [equipmentFilter, setEquipmentFilter] = useState("all");
   const [toast, setToast] = useState("");
 
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
 
   // Extract unique equipment names for filter
   const uniqueEquipment = [...new Set(documents.map((d) => d.equipmentName))];

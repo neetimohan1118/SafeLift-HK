@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Plus, QrCode, Search, ChevronLeft, ChevronRight, SearchX } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -22,10 +22,13 @@ export default function EquipmentListPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [toast, setToast] = useState("");
 
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
 
   const filtered = equipmentData.filter((e) => {
     const matchSearch =

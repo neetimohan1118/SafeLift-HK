@@ -228,7 +228,7 @@ export default function DashboardPage() {
             <div className="p-4 space-y-3">
               {upcomingExpirations.map((e) => (
                 <Link
-                  key={e.equipment}
+                  key={e.id}
                   href={`/equipment/${e.id}`}
                   className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-sl-bg transition-colors"
                 >

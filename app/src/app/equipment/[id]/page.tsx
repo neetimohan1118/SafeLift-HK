@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useCallback } from "react";
+import { use, useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -43,13 +43,18 @@ const maintenanceColor: Record<string, string> = {
 export default function EquipmentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const equipment = equipmentData.find((e) => e.id === id);
-  if (!equipment) notFound();
 
   const [toast, setToast] = useState("");
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const showToast = useCallback((msg: string) => {
+    clearTimeout(toastTimerRef.current);
     setToast(msg);
-    setTimeout(() => setToast(""), 2500);
+    toastTimerRef.current = setTimeout(() => setToast(""), 2500);
   }, []);
+  useEffect(() => () => clearTimeout(toastTimerRef.current), []);
+
+  if (!equipment) notFound();
+
   const status = statusConfig[equipment.status];
   const relatedDocs = documents.filter((d) => d.equipmentId === equipment.id);
   const relatedHazards = hazardReports.filter((h) => h.equipmentId === equipment.id);
@@ -221,13 +226,17 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
             {relatedDocs.length > 0 ? (
               <div className="space-y-3">
                 {relatedDocs.map((doc) => (
-                  <div key={doc.id} className="flex items-center gap-3 text-sm group cursor-pointer">
+                  <button
+                    key={doc.id}
+                    onClick={() => showToast(`Opening ${doc.fileName}... 開啟中...`)}
+                    className="flex items-center gap-3 text-sm group cursor-pointer w-full text-left"
+                  >
                     <FileText className="h-4 w-4 text-sl-orange shrink-0" />
                     <span className="text-sl-text group-hover:text-sl-orange transition-colors truncate">
                       {doc.fileName}
                     </span>
                     <ExternalLink className="h-3 w-3 text-sl-text-secondary ml-auto opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
-                  </div>
+                  </button>
                 ))}
               </div>
             ) : (
