@@ -62,7 +62,7 @@ export default function SettingsPage() {
               Role 角色
             </label>
             <div className="flex items-center gap-2">
-              <Input id="settings-role" defaultValue="Site Manager" className="bg-white border-sl-border" disabled />
+              <Input id="settings-role" defaultValue="Site Manager 工地經理" className="bg-white border-sl-border" disabled />
               <Badge variant="secondary" className="bg-sl-orange/10 text-sl-orange">Admin 管理員</Badge>
             </div>
           </div>

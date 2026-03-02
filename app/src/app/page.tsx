@@ -145,7 +145,7 @@ export default function DashboardPage() {
         </Link>
         <Link href="/hazard">
           <StatCard
-            label="Reports 本月報告數量"
+            label="Reports 報告數量"
             value={dashboardStats.reportsThisMonth}
             icon={<FileText className="h-5 w-5 text-sl-low" />}
             color="border-l-sl-low"

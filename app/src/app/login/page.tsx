@@ -67,15 +67,15 @@ export default function LoginPage() {
           <div className="flex gap-6 text-sm">
             <div className="text-center">
               <p className="text-2xl font-bold text-sl-orange">89.4%</p>
-              <p className="text-sl-sidebar-text">AI 偵測精確度</p>
+              <p className="text-sl-sidebar-text">AI Accuracy AI偵測精確度</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-sl-orange">3 秒</p>
-              <p className="text-sl-sidebar-text">分析速度</p>
+              <p className="text-2xl font-bold text-sl-orange">3 sec 秒</p>
+              <p className="text-sl-sidebar-text">Analysis Speed 分析速度</p>
             </div>
             <div className="text-center">
               <p className="text-2xl font-bold text-sl-orange">$0.025</p>
-              <p className="text-sl-sidebar-text">每張分析成本</p>
+              <p className="text-sl-sidebar-text">Cost per Analysis 每張分析成本</p>
             </div>
           </div>
         </div>
