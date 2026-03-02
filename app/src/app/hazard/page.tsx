@@ -15,6 +15,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 const mockHazards = [
   {
@@ -181,11 +182,12 @@ export default function HazardDetectionPage() {
               </div>
             ) : (
               <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80"
                   alt="Construction site with crane"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 60vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/20" />
               </>

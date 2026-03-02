@@ -82,6 +82,9 @@ export default function DashboardPage() {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-sl-text">嚴重危害偵測 Critical Hazard</p>
                 <p className="text-xs text-sl-text-secondary mt-0.5">
+                  Worker in crane danger zone — Cheung Sha Wan site
+                </p>
+                <p className="text-[11px] text-sl-text-secondary/80">
                   長沙灣工地偵測到有人進入吊運危險範圍
                 </p>
                 <Link
