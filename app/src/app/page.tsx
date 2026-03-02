@@ -71,6 +71,7 @@ export default function DashboardPage() {
               </div>
               <button
                 onClick={() => setShowToast(false)}
+                aria-label="Dismiss notification 關閉通知"
                 className="text-sl-text-secondary hover:text-sl-text shrink-0"
               >
                 <X className="h-4 w-4" />
@@ -158,8 +159,12 @@ export default function DashboardPage() {
                 {hazardReports.map((r) => (
                   <tr
                     key={r.id}
+                    tabIndex={0}
+                    role="link"
+                    aria-label={`View hazard report for ${r.equipmentName}`}
                     onClick={goToHazard}
-                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer"
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToHazard(); } }}
+                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus:outline-none focus:bg-sl-bg/50"
                   >
                     <td className="px-6 py-3 text-sl-text-secondary">
                       {r.reportedAt.split(" ")[0]}
@@ -196,8 +201,12 @@ export default function DashboardPage() {
             {hazardReports.map((r) => (
               <div
                 key={r.id}
+                tabIndex={0}
+                role="link"
+                aria-label={`View hazard report for ${r.equipmentName}`}
                 onClick={goToHazard}
-                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer"
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToHazard(); } }}
+                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus:outline-none focus:bg-sl-bg/50"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>

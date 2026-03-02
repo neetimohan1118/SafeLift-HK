@@ -153,8 +153,12 @@ export default function DocumentsPage() {
               return (
                 <div
                   key={doc.id}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Open ${doc.fileName}`}
                   onClick={() => showToast(`Opening ${doc.fileName}... 開啟中...`)}
-                  className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all cursor-pointer"
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); showToast(`Opening ${doc.fileName}... 開啟中...`); } }}
+                  className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-sl-orange/30"
                 >
                   <div className="p-5">
                     {/* Type Badge + Status */}

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useAlerts } from "@/lib/alert-context";
+import Link from "next/link";
 
 const tabs = [
   { id: "all", label: "All 全部", icon: Bell },
@@ -194,7 +195,7 @@ export default function AlertCenterPage() {
                                   <Clock className="h-3 w-3" />
                                   {alert.createdAt}
                                 </span>
-                                <span>Equipment: {alert.equipmentId}</span>
+                                <Link href={`/equipment/${alert.equipmentId}`} onClick={(e) => e.stopPropagation()} className="hover:text-sl-orange hover:underline transition-colors">Equipment: {alert.equipmentId}</Link>
                               </div>
                             </div>
                             <Badge variant="secondary" className={`${config.className} text-xs font-medium shrink-0`}>

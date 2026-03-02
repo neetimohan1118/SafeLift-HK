@@ -138,6 +138,8 @@ export default function HazardDetectionPage() {
   }, []);
 
   const handleRetake = () => {
+    timerCleanupRef.current?.();
+    timerCleanupRef.current = null;
     setState("idle");
     setVisibleHazards(0);
     setAnalysisProgress(0);
@@ -268,12 +270,14 @@ export default function HazardDetectionPage() {
 
         {/* Camera Controls */}
         <div className="flex items-center justify-center gap-6 py-2">
-          <button className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
+          <button onClick={() => showToast("Zoom not available in demo 縮放功能不適用於演示模式")} className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
             <ZoomIn className="h-5 w-5" />
             <span className="text-xs">Zoom</span>
           </button>
           <button
-            onClick={state !== "analyzing" ? runAnalysis : undefined}
+            onClick={runAnalysis}
+            disabled={state === "analyzing"}
+            aria-label="Take photo 拍攝照片"
             className={`flex items-center justify-center h-14 w-14 rounded-full text-white shadow-lg transition-all ${
               state === "analyzing"
                 ? "bg-gray-400 cursor-not-allowed"
@@ -286,7 +290,7 @@ export default function HazardDetectionPage() {
               <Camera className="h-6 w-6" />
             )}
           </button>
-          <button className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
+          <button onClick={() => showToast("Flash not available in demo 閃光燈不適用於演示模式")} className="flex flex-col items-center gap-1 text-sl-text-secondary hover:text-sl-text transition-colors">
             <Zap className="h-5 w-5" />
             <span className="text-xs">Flash</span>
           </button>

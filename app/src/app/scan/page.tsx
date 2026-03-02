@@ -9,6 +9,7 @@ export default function ScanPage() {
   const router = useRouter();
   const [scanState, setScanState] = useState<"scanning" | "found" | "navigating">("scanning");
   const [scanLinePos, setScanLinePos] = useState(0);
+  const [scanKey, setScanKey] = useState(0);
   const [toast, setToast] = useState("");
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
@@ -33,6 +34,7 @@ export default function ScanPage() {
     timersRef.current = [];
     setScanState("scanning");
     setScanLinePos(0);
+    setScanKey((k) => k + 1);
   }, []);
 
   // Auto-detect after 3 seconds for demo
@@ -51,7 +53,7 @@ export default function ScanPage() {
     }, 3000);
     timers.push(timer);
     return () => { timers.forEach(clearTimeout); timersRef.current = []; clearTimeout(toastTimerRef.current); };
-  }, [router]);
+  }, [router, scanKey]);
 
   return (
     <div className="flex flex-col h-full bg-black">
