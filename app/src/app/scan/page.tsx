@@ -148,13 +148,10 @@ export default function ScanPage() {
         <div className="absolute bottom-[28%] left-0 right-0 text-center">
           <p className="text-white text-sm font-medium">
             {scanState === "scanning"
-              ? "Point camera at equipment QR code"
+              ? "Point camera at equipment QR code 將相機對準設備二維碼"
               : scanState === "found"
                 ? "Equipment found 設備已識別"
                 : "Opening equipment profile... 正在開啟設備資料"}
-          </p>
-          <p className="text-white/60 text-xs mt-1">
-            {scanState === "scanning" && "將相機對準設備二維碼"}
           </p>
         </div>
       </div>

@@ -134,7 +134,7 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
               <DetailRow label="Manufacturer 製造商" value={equipment.manufacturer} />
               <DetailRow label="Max Capacity 最大承載" value={`${equipment.maxCapacity} tonnes`} />
               <DetailRow label="Model 型號" value={equipment.model} />
-              <DetailRow label="Max Radius 最大半徑" value={equipment.maxRadius > 0 ? `${equipment.maxRadius}m` : "N/A"} />
+              <DetailRow label="Max Radius 最大半徑" value={equipment.maxRadius > 0 ? `${equipment.maxRadius}m` : "N/A 不適用"} />
               <DetailRow label="Project 項目" value={equipment.projectName} />
               <DetailRow label="Last Maintenance 上次維修" value={equipment.lastMaintenanceDate} />
             </div>

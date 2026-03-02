@@ -97,8 +97,8 @@ export default function AlertCenterPage() {
         </div>
         <button
           onClick={markAllRead}
-          className={`text-sm hover:underline self-start sm:self-auto whitespace-nowrap ${
-            unreadCount > 0 ? "text-sl-orange" : "text-sl-text-secondary cursor-default"
+          className={`text-sm self-start sm:self-auto whitespace-nowrap ${
+            unreadCount > 0 ? "text-sl-orange hover:underline" : "text-sl-text-secondary cursor-default"
           }`}
           disabled={unreadCount === 0}
         >
