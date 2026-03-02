@@ -364,10 +364,17 @@ export const documents: Document[] = [
 // Alerts
 // ==========================================
 // Generate relative dates so "Today" / "Yesterday" grouping works at demo time
+function localDateStr(d: Date): string {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 function relativeDate(daysAgo: number, time: string): string {
   const d = new Date();
   d.setDate(d.getDate() - daysAgo);
-  return `${d.toISOString().split("T")[0]} ${time}`;
+  return `${localDateStr(d)} ${time}`;
 }
 
 export const alerts: Alert[] = [

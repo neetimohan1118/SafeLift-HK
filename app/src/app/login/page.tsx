@@ -192,8 +192,9 @@ export default function LoginPage() {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center gap-2 text-sl-text-secondary">
+              <label htmlFor="remember-me" className="flex items-center gap-2 text-sl-text-secondary">
                 <input
+                  id="remember-me"
                   type="checkbox"
                   defaultChecked
                   className="h-4 w-4 rounded border-sl-border accent-sl-orange"

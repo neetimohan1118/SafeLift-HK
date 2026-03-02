@@ -226,6 +226,7 @@ function ToggleRow({
       <button
         role="switch"
         aria-checked={checked}
+        aria-label={label}
         onClick={onChange}
         className={`relative h-6 w-11 rounded-full transition-colors ${
           checked ? "bg-sl-orange" : "bg-gray-300"
