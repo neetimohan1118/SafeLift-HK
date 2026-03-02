@@ -85,22 +85,25 @@ export default function AlertCenterPage() {
   return (
     <div className="p-4 md:p-8 space-y-6 animate-fade-in-up">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-bold text-sl-text">
+          <h1 className="text-xl md:text-2xl font-bold text-sl-text">
             Alert Center 通知中心
           </h1>
           <p className="text-sm text-sl-text-secondary mt-1">
             Safety alerts and notifications 安全警報及通知
           </p>
         </div>
-        <button className="text-sm text-sl-orange hover:underline">
+        <button
+          onClick={() => {/* Demo: mark all read */}}
+          className="text-sm text-sl-orange hover:underline self-start sm:self-auto whitespace-nowrap"
+        >
           Mark all read 全部標為已讀
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-sl-border pb-0">
+      <div className="flex items-center gap-2 border-b border-sl-border pb-0 overflow-x-auto scrollbar-hide">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
           const Icon = tab.icon;
@@ -113,7 +116,7 @@ export default function AlertCenterPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium border-b-2 transition-colors ${
+              className={`flex items-center gap-1.5 px-3 md:px-4 py-2.5 text-xs md:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 ${
                 isActive
                   ? "border-sl-orange text-sl-orange"
                   : "border-transparent text-sl-text-secondary hover:text-sl-text"

@@ -211,9 +211,9 @@ export default function DashboardPage() {
               </h2>
             </div>
             <div className="p-4 space-y-3">
-              {upcomingExpirations.map((e, i) => (
+              {upcomingExpirations.map((e) => (
                 <div
-                  key={i}
+                  key={e.equipment}
                   className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-sl-bg transition-colors"
                 >
                   <div>
