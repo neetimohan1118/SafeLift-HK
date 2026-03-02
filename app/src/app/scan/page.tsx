@@ -124,7 +124,7 @@ export default function ScanPage() {
                       <CheckCircle className="h-8 w-8 text-sl-safe" />
                     </div>
                     <p className="text-white text-sm font-medium">QR Code Detected! 已偵測到二維碼</p>
-                    <p className="text-white/70 text-xs">Equipment: LC-2024-001</p>
+                    <p className="text-white/70 text-xs">Equipment 設備: LC-2024-001</p>
                   </>
                 ) : (
                   <>

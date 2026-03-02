@@ -185,10 +185,10 @@ export default function EquipmentListPage() {
               </p>
               <div className="flex items-center gap-2">
                 <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-                  <ChevronLeft className="h-4 w-4" /> Previous
+                  <ChevronLeft className="h-4 w-4" /> Previous 上一頁
                 </button>
                 <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-                  Next <ChevronRight className="h-4 w-4" />
+                  Next 下一頁 <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function EquipmentListPage() {
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-3 pt-2 border-t border-sl-border/50">
-                    <p className="text-xs text-sl-text-secondary">Cert expiry: {eq.certExpiryDate}</p>
+                    <p className="text-xs text-sl-text-secondary">Cert expiry 證書到期: {eq.certExpiryDate}</p>
                     <ChevronRight className="h-4 w-4 text-sl-text-secondary" />
                   </div>
                 </Link>

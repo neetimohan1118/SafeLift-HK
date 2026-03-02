@@ -27,7 +27,7 @@ const typeConfig: Record<string, { label: string; icon: typeof FileText; color: 
   "maintenance-record": { label: "Maintenance 維修紀錄", icon: Wrench, color: "text-orange-700", bgColor: "bg-orange-100" },
   "safety-training": { label: "Safety Training 安全培訓", icon: GraduationCap, color: "text-purple-700", bgColor: "bg-purple-100" },
   "load-test": { label: "Load Test 負重測試", icon: TestTube, color: "text-teal-700", bgColor: "bg-teal-100" },
-  pdf: { label: "PDF Document", icon: FileText, color: "text-red-700", bgColor: "bg-red-100" },
+  pdf: { label: "PDF Document PDF文件", icon: FileText, color: "text-red-700", bgColor: "bg-red-100" },
   image: { label: "Photo 相片", icon: FileText, color: "text-gray-700", bgColor: "bg-gray-100" },
 };
 
@@ -190,12 +190,12 @@ export default function DocumentsPage() {
                       </div>
                       <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
                         <Calendar className="h-3 w-3" />
-                        <span>Uploaded: {doc.uploadedAt}</span>
+                        <span>Uploaded 上傳日期: {doc.uploadedAt}</span>
                       </div>
                       {doc.expiryDate && (
                         <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
                           <Calendar className="h-3 w-3" />
-                          <span>Expires: {doc.expiryDate}</span>
+                          <span>Expires 到期日: {doc.expiryDate}</span>
                         </div>
                       )}
                       <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
@@ -228,13 +228,13 @@ export default function DocumentsPage() {
             </p>
             <div className="flex items-center gap-2">
               <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-                <ChevronLeft className="h-4 w-4" /> Previous
+                <ChevronLeft className="h-4 w-4" /> Previous 上一頁
               </button>
-              <button aria-current="page" aria-label="Page 1" className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
+              <button aria-current="page" aria-label="Page 頁碼 1" className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
                 1
               </button>
               <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-                Next <ChevronRight className="h-4 w-4" />
+                Next 下一頁 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
           </div>
