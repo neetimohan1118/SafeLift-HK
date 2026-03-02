@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import {
   Camera,
   ZoomIn,
@@ -115,12 +115,6 @@ export default function HazardDetectionPage() {
     setAnalysisProgress(0);
   };
 
-  // Auto-run analysis on first visit for demo
-  useEffect(() => {
-    if (state === "idle") {
-      // Wait a moment then auto-analyze for demo
-    }
-  }, [state]);
 
   return (
     <div className="flex flex-col lg:flex-row lg:h-full">
