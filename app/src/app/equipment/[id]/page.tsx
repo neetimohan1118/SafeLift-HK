@@ -185,10 +185,8 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
                 </div>
               </div>
               <div className="text-center mt-3">
-                <Badge variant="secondary" className={`font-medium ${
-                  daysLeft > 30 ? "bg-green-100 text-green-700" : daysLeft > 0 ? "bg-orange-100 text-orange-700" : "bg-red-100 text-red-700"
-                }`}>
-                  {daysLeft > 30 ? "Valid 有效" : daysLeft > 0 ? "Expiring 即將到期" : "Expired 已過期"}
+                <Badge variant="secondary" className={`${status.className} font-medium`}>
+                  {status.label}
                 </Badge>
                 <p className="text-xs text-sl-text-secondary mt-2">
                   Expires: {equipment.certExpiryDate}
