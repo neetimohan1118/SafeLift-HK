@@ -513,11 +513,19 @@ export const dashboardStats = {
 };
 
 // ==========================================
-// Upcoming Expirations
+// Upcoming Expirations (computed from equipment data)
 // ==========================================
-export const upcomingExpirations = [
-  { equipment: "LC-0039-042 UNIC URW-706", daysLeft: 43, type: "high" },
-  { equipment: "TC-2023-015 Liebherr 280 EC-H", daysLeft: 61, type: "high" },
-  { equipment: "GD-0001-003 Konecranes CXT", daysLeft: 121, type: "normal" },
-  { equipment: "MC-2024-003 Potain MCT 205", daysLeft: 141, type: "normal" },
-];
+export const upcomingExpirations = equipmentData
+  .filter((e) => e.status !== "expired")
+  .map((e) => {
+    const today = new Date();
+    const expiry = new Date(e.certExpiryDate);
+    const daysLeft = Math.max(0, Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
+    return {
+      equipment: `${e.equipmentNumber} ${e.model}`,
+      daysLeft,
+      type: daysLeft <= 60 ? "high" : "normal",
+    };
+  })
+  .sort((a, b) => a.daysLeft - b.daysLeft)
+  .slice(0, 4);
