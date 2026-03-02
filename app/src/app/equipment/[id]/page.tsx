@@ -107,10 +107,10 @@ export default function EquipmentDetailPage({ params }: { params: Promise<{ id: 
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button onClick={() => showToast("Edit coming soon 編輯功能即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
+          <button onClick={() => showToast("Edit coming soon 編輯功能即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-sl-bg transition-colors">
             <Edit className="h-4 w-4" /> Edit 編輯
           </button>
-          <button onClick={() => showToast("Print QR coming soon 列印二維碼即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-white transition-colors">
+          <button onClick={() => showToast("Print QR coming soon 列印二維碼即將推出")} className="flex items-center gap-2 rounded-lg border border-sl-border px-3 py-2 text-sm text-sl-text hover:bg-sl-bg transition-colors">
             <Printer className="h-4 w-4" /> Print QR 列印二維碼
           </button>
           <button onClick={() => showToast("Decommission coming soon 報廢功能即將推出")} className="flex items-center gap-2 rounded-lg border border-red-300 bg-red-50 px-3 py-2 text-sm font-medium text-red-700 hover:bg-red-100 transition-colors">

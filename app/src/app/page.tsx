@@ -186,7 +186,7 @@ export default function DashboardPage() {
                     aria-label={`View hazard report for ${r.equipmentName}`}
                     onClick={goToHazard}
                     onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToHazard(); } }}
-                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus:outline-none focus:bg-sl-bg/50"
+                    className="border-b border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sl-orange/40 focus-visible:bg-sl-bg/50"
                   >
                     <td className="px-6 py-3 text-sl-text-secondary">
                       {r.reportedAt.split(" ")[0]}
@@ -228,7 +228,7 @@ export default function DashboardPage() {
                 aria-label={`View hazard report for ${r.equipmentName}`}
                 onClick={goToHazard}
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goToHazard(); } }}
-                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus:outline-none focus:bg-sl-bg/50"
+                className="flex items-center justify-between p-3 rounded-lg border border-sl-border/50 hover:bg-sl-bg/50 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sl-orange/40 focus-visible:bg-sl-bg/50"
               >
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-sl-text truncate">{r.equipmentName}</p>

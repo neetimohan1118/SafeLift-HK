@@ -161,8 +161,8 @@ export default function ScanPage() {
 
       {/* Bottom Controls */}
       <div className="flex items-center justify-center gap-8 p-6 bg-black">
-        <button onClick={() => showToast("Flash not available in demo 閃光燈不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+        <button onClick={() => showToast("Flash not available in demo 閃光燈不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
             <Flashlight className="h-5 w-5" />
           </div>
           <span className="text-[10px]">Flash 閃光</span>
@@ -177,8 +177,8 @@ export default function ScanPage() {
           </button>
         )}
 
-        <button onClick={() => showToast("Camera switch not available in demo 切換相機不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+        <button onClick={() => showToast("Camera switch not available in demo 切換相機不適用於演示模式")} className="flex flex-col items-center gap-1 text-white/60 hover:text-white transition-colors">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
             <SwitchCamera className="h-5 w-5" />
           </div>
           <span className="text-[10px]">Switch 切換</span>
