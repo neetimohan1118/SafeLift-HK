@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import {
   Upload,
   Search,
+  SearchX,
   FileText,
   ShieldCheck,
   ClipboardCheck,
@@ -125,92 +126,108 @@ export default function DocumentsPage() {
         </div>
       </div>
 
-      {/* Document Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filtered.map((doc) => {
-          const config = typeConfig[doc.fileType] || typeConfig.pdf;
-          const Icon = config.icon;
-          const badge = statusBadge[doc.status];
-          return (
-            <div
-              key={doc.id}
-              className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all"
-            >
-              <div className="p-5">
-                {/* Type Badge + Status */}
-                <div className="flex items-start justify-between mb-3">
-                  <div className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${config.bgColor} ${config.color}`}>
-                    <Icon className="h-3.5 w-3.5" />
-                    {config.label}
-                  </div>
-                  {badge && (
-                    <Badge variant="secondary" className={`${badge.className} text-[10px] font-medium`}>
-                      {badge.label}
-                    </Badge>
-                  )}
-                </div>
-
-                {/* File Name */}
-                <h3 className="text-sm font-semibold text-sl-text mb-1 line-clamp-2">
-                  {doc.fileName}
-                </h3>
-
-                {/* Meta */}
-                <div className="space-y-1.5 mt-3">
-                  <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
-                    <Link2 className="h-3 w-3" />
-                    <span className="truncate">{doc.equipmentName}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
-                    <Calendar className="h-3 w-3" />
-                    <span>Uploaded: {doc.uploadedAt}</span>
-                  </div>
-                  {doc.expiryDate && (
-                    <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
-                      <Calendar className="h-3 w-3" />
-                      <span>Expires: {doc.expiryDate}</span>
-                    </div>
-                  )}
-                  <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
-                    <User className="h-3 w-3" />
-                    <span>{doc.uploadedBy} · {doc.fileSize}</span>
-                  </div>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mt-3">
-                  {doc.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full bg-sl-bg px-2 py-0.5 text-[10px] text-sl-text-secondary"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Pagination */}
-      <div className="flex items-center justify-between">
-        <p className="text-sm text-sl-text-secondary">
-          Showing {filtered.length} of {documents.length} documents 顯示{filtered.length}份文件
-        </p>
-        <div className="flex items-center gap-2">
-          <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-            <ChevronLeft className="h-4 w-4" /> Previous
-          </button>
-          <button className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
-            1
-          </button>
-          <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
-            Next <ChevronRight className="h-4 w-4" />
+      {filtered.length === 0 ? (
+        <div className="flex flex-col items-center justify-center py-16 bg-white rounded-xl border border-sl-border">
+          <SearchX className="h-12 w-12 text-sl-text-secondary/40 mb-4" />
+          <p className="text-sm font-medium text-sl-text">No documents found 找不到文件</p>
+          <p className="text-xs text-sl-text-secondary mt-1">Try adjusting your search or filters 請嘗試調整搜尋條件或篩選器</p>
+          <button
+            onClick={() => { setSearch(""); setTypeFilter("all"); setEquipmentFilter("all"); }}
+            className="mt-4 text-sm text-sl-orange hover:underline"
+          >
+            Clear all filters 清除所有篩選
           </button>
         </div>
-      </div>
+      ) : (
+        <>
+          {/* Document Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {filtered.map((doc) => {
+              const config = typeConfig[doc.fileType] || typeConfig.pdf;
+              const Icon = config.icon;
+              const badge = statusBadge[doc.status];
+              return (
+                <div
+                  key={doc.id}
+                  className="bg-white rounded-xl border border-sl-border hover:border-sl-orange/30 hover:shadow-sm transition-all"
+                >
+                  <div className="p-5">
+                    {/* Type Badge + Status */}
+                    <div className="flex items-start justify-between mb-3">
+                      <div className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${config.bgColor} ${config.color}`}>
+                        <Icon className="h-3.5 w-3.5" />
+                        {config.label}
+                      </div>
+                      {badge && (
+                        <Badge variant="secondary" className={`${badge.className} text-[10px] font-medium`}>
+                          {badge.label}
+                        </Badge>
+                      )}
+                    </div>
+
+                    {/* File Name */}
+                    <h3 className="text-sm font-semibold text-sl-text mb-1 line-clamp-2">
+                      {doc.fileName}
+                    </h3>
+
+                    {/* Meta */}
+                    <div className="space-y-1.5 mt-3">
+                      <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
+                        <Link2 className="h-3 w-3" />
+                        <span className="truncate">{doc.equipmentName}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
+                        <Calendar className="h-3 w-3" />
+                        <span>Uploaded: {doc.uploadedAt}</span>
+                      </div>
+                      {doc.expiryDate && (
+                        <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
+                          <Calendar className="h-3 w-3" />
+                          <span>Expires: {doc.expiryDate}</span>
+                        </div>
+                      )}
+                      <div className="flex items-center gap-2 text-xs text-sl-text-secondary">
+                        <User className="h-3 w-3" />
+                        <span>{doc.uploadedBy} · {doc.fileSize}</span>
+                      </div>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {doc.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-sl-bg px-2 py-0.5 text-[10px] text-sl-text-secondary"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Pagination */}
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-sl-text-secondary">
+              Showing {filtered.length} of {documents.length} documents 顯示{filtered.length}份文件
+            </p>
+            <div className="flex items-center gap-2">
+              <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
+                <ChevronLeft className="h-4 w-4" /> Previous
+              </button>
+              <button className="flex items-center justify-center h-8 w-8 rounded-lg bg-sl-orange text-white text-sm font-medium">
+                1
+              </button>
+              <button disabled className="flex items-center gap-1 rounded-lg border border-sl-border px-3 py-1.5 text-sm text-sl-text-secondary/50 cursor-not-allowed">
+                Next <ChevronRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

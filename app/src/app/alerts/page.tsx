@@ -10,6 +10,7 @@ import {
   FileWarning,
   Clock,
   Eye,
+  BellOff,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useAlerts } from "@/lib/alert-context";
@@ -138,55 +139,77 @@ export default function AlertCenterPage() {
 
       {/* Alert List */}
       <div className="space-y-6">
-        {Object.entries(grouped).map(([dateLabel, dateAlerts]) => (
-          <div key={dateLabel}>
-            <h3 className="text-sm font-semibold text-sl-text-secondary mb-3">
-              {dateLabel}
-            </h3>
-            <div className="space-y-3">
-              {dateAlerts.map((alert) => {
-                const config = priorityConfig[alert.priority];
-                const Icon = config.icon;
-                return (
-                  <div
-                    key={alert.id}
-                    className={`rounded-xl border border-sl-border border-l-4 ${config.borderColor} p-5 hover:shadow-sm transition-shadow ${
-                      !alert.isRead ? "bg-white" : "bg-sl-bg/50"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${config.className}`}>
-                        <Icon className={`h-5 w-5 ${config.iconColor}`} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between gap-4">
-                          <div>
-                            <h4 className="text-sm font-semibold text-sl-text">
-                              {alert.title_zh}
-                            </h4>
-                            <p className="text-sm text-sl-text-secondary mt-1 leading-relaxed">
-                              {alert.message_zh}
-                            </p>
-                            <div className="flex items-center gap-3 mt-2 text-xs text-sl-text-secondary">
-                              <span className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                {alert.createdAt}
-                              </span>
-                              <span>Equipment: {alert.equipmentId}</span>
+        {filteredAlerts.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16 bg-white rounded-xl border border-sl-border">
+            <BellOff className="h-12 w-12 text-sl-text-secondary/40 mb-4" />
+            <p className="text-sm font-medium text-sl-text">
+              {activeTab === "unread" ? "No unread alerts 沒有未讀通知" : "No alerts found 找不到通知"}
+            </p>
+            <p className="text-xs text-sl-text-secondary mt-1">
+              {activeTab === "unread"
+                ? "All caught up! 全部已讀！"
+                : "No alerts match this filter 沒有符合此篩選的通知"}
+            </p>
+            {activeTab !== "all" && (
+              <button
+                onClick={() => setActiveTab("all")}
+                className="mt-4 text-sm text-sl-orange hover:underline"
+              >
+                View all alerts 查看全部通知
+              </button>
+            )}
+          </div>
+        ) : (
+          Object.entries(grouped).map(([dateLabel, dateAlerts]) => (
+            <div key={dateLabel}>
+              <h3 className="text-sm font-semibold text-sl-text-secondary mb-3">
+                {dateLabel}
+              </h3>
+              <div className="space-y-3">
+                {dateAlerts.map((alert) => {
+                  const config = priorityConfig[alert.priority];
+                  const Icon = config.icon;
+                  return (
+                    <div
+                      key={alert.id}
+                      className={`rounded-xl border border-sl-border border-l-4 ${config.borderColor} p-5 hover:shadow-sm transition-shadow ${
+                        !alert.isRead ? "bg-white" : "bg-sl-bg/50"
+                      }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${config.className}`}>
+                          <Icon className={`h-5 w-5 ${config.iconColor}`} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <div>
+                              <h4 className="text-sm font-semibold text-sl-text">
+                                {alert.title_zh}
+                              </h4>
+                              <p className="text-sm text-sl-text-secondary mt-1 leading-relaxed">
+                                {alert.message_zh}
+                              </p>
+                              <div className="flex items-center gap-3 mt-2 text-xs text-sl-text-secondary">
+                                <span className="flex items-center gap-1">
+                                  <Clock className="h-3 w-3" />
+                                  {alert.createdAt}
+                                </span>
+                                <span>Equipment: {alert.equipmentId}</span>
+                              </div>
                             </div>
+                            <Badge variant="secondary" className={`${config.className} text-xs font-medium shrink-0`}>
+                              {config.label}
+                            </Badge>
                           </div>
-                          <Badge variant="secondary" className={`${config.className} text-xs font-medium shrink-0`}>
-                            {config.label}
-                          </Badge>
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
