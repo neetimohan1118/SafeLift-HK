@@ -522,6 +522,7 @@ export const upcomingExpirations = equipmentData
     const expiry = new Date(e.certExpiryDate);
     const daysLeft = Math.max(0, Math.ceil((expiry.getTime() - today.getTime()) / (1000 * 60 * 60 * 24)));
     return {
+      id: e.id,
       equipment: `${e.equipmentNumber} ${e.model}`,
       daysLeft,
       type: daysLeft <= 60 ? "high" : "normal",

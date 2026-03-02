@@ -88,30 +88,38 @@ export default function DashboardPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        <StatCard
-          label="Active Equipment 運行中設備"
-          value={dashboardStats.activeEquipment}
-          icon={<Construction className="h-5 w-5 text-sl-orange" />}
-          color="border-l-sl-orange"
-        />
-        <StatCard
-          label="Expiring Certs 即將到期證書"
-          value={dashboardStats.expiringCertificates}
-          icon={<FileWarning className="h-5 w-5 text-sl-high" />}
-          color="border-l-sl-high"
-        />
-        <StatCard
-          label="Open Hazards 未處理危害"
-          value={dashboardStats.openHazards}
-          icon={<AlertTriangle className="h-5 w-5 text-sl-critical" />}
-          color="border-l-sl-critical"
-        />
-        <StatCard
-          label="Reports 本月報告數量"
-          value={dashboardStats.reportsThisMonth}
-          icon={<FileText className="h-5 w-5 text-sl-low" />}
-          color="border-l-sl-low"
-        />
+        <Link href="/equipment">
+          <StatCard
+            label="Active Equipment 運行中設備"
+            value={dashboardStats.activeEquipment}
+            icon={<Construction className="h-5 w-5 text-sl-orange" />}
+            color="border-l-sl-orange"
+          />
+        </Link>
+        <Link href="/documents">
+          <StatCard
+            label="Expiring Certs 即將到期證書"
+            value={dashboardStats.expiringCertificates}
+            icon={<FileWarning className="h-5 w-5 text-sl-high" />}
+            color="border-l-sl-high"
+          />
+        </Link>
+        <Link href="/alerts">
+          <StatCard
+            label="Open Hazards 未處理危害"
+            value={dashboardStats.openHazards}
+            icon={<AlertTriangle className="h-5 w-5 text-sl-critical" />}
+            color="border-l-sl-critical"
+          />
+        </Link>
+        <Link href="/hazard">
+          <StatCard
+            label="Reports 本月報告數量"
+            value={dashboardStats.reportsThisMonth}
+            icon={<FileText className="h-5 w-5 text-sl-low" />}
+            color="border-l-sl-low"
+          />
+        </Link>
       </div>
 
       {/* Main Content Row */}
@@ -212,8 +220,9 @@ export default function DashboardPage() {
             </div>
             <div className="p-4 space-y-3">
               {upcomingExpirations.map((e) => (
-                <div
+                <Link
                   key={e.equipment}
+                  href={`/equipment/${e.id}`}
                   className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-sl-bg transition-colors"
                 >
                   <div>
@@ -227,16 +236,16 @@ export default function DashboardPage() {
                   <Badge
                     variant="secondary"
                     className={`text-xs font-medium ${
-                      e.daysLeft <= 7
+                      e.daysLeft <= 30
                         ? "bg-red-100 text-red-700"
-                        : e.daysLeft <= 14
+                        : e.daysLeft <= 90
                           ? "bg-orange-100 text-orange-700"
                           : "bg-yellow-100 text-yellow-700"
                     }`}
                   >
                     {e.daysLeft} days
                   </Badge>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -284,7 +293,7 @@ function StatCard({
 }) {
   return (
     <div
-      className={`bg-white rounded-xl border border-sl-border border-l-4 ${color} p-5`}
+      className={`bg-white rounded-xl border border-sl-border border-l-4 ${color} p-5 hover:shadow-sm hover:border-sl-orange/30 transition-all cursor-pointer`}
     >
       <div className="flex items-center justify-between mb-3">
         <span className="text-xs font-medium text-sl-text-secondary uppercase tracking-wide">
