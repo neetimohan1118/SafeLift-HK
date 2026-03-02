@@ -188,6 +188,9 @@ export default function AlertCenterPage() {
                                 {alert.title_zh}
                               </h4>
                               <p className="text-sm text-sl-text-secondary mt-1 leading-relaxed">
+                                {alert.message_en}
+                              </p>
+                              <p className="text-xs text-sl-text-secondary mt-1 leading-relaxed">
                                 {alert.message_zh}
                               </p>
                               <div className="flex items-center gap-3 mt-2 text-xs text-sl-text-secondary">
